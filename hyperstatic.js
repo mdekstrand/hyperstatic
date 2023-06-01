@@ -111,5 +111,9 @@ export function hyperstatic(context) {
   return h;
 }
 
+/**
+ * Default HyperStatic implementation using the document from the global `window` object.
+ * @type {HyperStatic}
+ */
 export const h = hyperstatic(window);
 export default h;
