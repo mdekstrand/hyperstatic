@@ -9,10 +9,10 @@ properties for modern environments:
 - exposed as ES module
 - clean, modern JavaScript with types and documentation
 - test suite
-- can be instantiated with different DOM implementations like [deno_dom][]
+- can be instantiated with different DOM implementations like [deno_dom][] or xmldom
 
 It provides a HyperScript-compatible `h` function, along with React-compatible
-`createElement`.
+`createElement`.  It also generally works fine with XML, not just HTML.
 
 To use in the browser:
 
@@ -28,7 +28,7 @@ To use in Deno:
 import { Document } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts';
 import { hyperstatic } from 'https://deno.land/x/hyperstatic/hyperstatic.js';
 const h = hyperstatic({
-    document: new Document();
+    document: new Document()
 });
 
 let elt = h('a.link', {href: 'https://example.com'}, 'Example');

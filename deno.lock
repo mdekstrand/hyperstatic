@@ -28,6 +28,11 @@
     "https://deno.land/x/deno_dom@v0.1.38/src/dom/selectors/sizzle.js": "c3aed60c1045a106d8e546ac2f85cc82e65f62d9af2f8f515210b9212286682a",
     "https://deno.land/x/deno_dom@v0.1.38/src/dom/utils-types.ts": "96db30e3e4a75b194201bb9fa30988215da7f91b380fca6a5143e51ece2a8436",
     "https://deno.land/x/deno_dom@v0.1.38/src/dom/utils.ts": "55f3e9dc71d6c4a54605888d3f99d26fb0cf9973924709f159252a6933ceeabe",
-    "https://deno.land/x/deno_dom@v0.1.38/src/parser.ts": "b65eb7e673fa7ca611de871de109655f0aa9fa35ddc1de73df1a5fc2baafc332"
+    "https://deno.land/x/deno_dom@v0.1.38/src/parser.ts": "b65eb7e673fa7ca611de871de109655f0aa9fa35ddc1de73df1a5fc2baafc332",
+    "https://deno.land/x/hyperstatic@v0.1.1/hyperstatic.js": "8d86372ebe30dbcc384d3ca2893cd294361ae87d16bf8ce0b7cb66bffe2064b9",
+    "https://deno.land/x/hyperstatic@v0.1.1/spec.js": "d8754b67b804658ae859d5df4fd4e403b0bc05b5d1d5d4ecd7b55b6c89bbb783",
+    "https://esm.sh/@xmldom/xmldom@v0.8.8": "53c888ba22f49c7ce27e4fb8225cdcbc9a97b5a5f3a6d81550f40c1f985ac573",
+    "https://esm.sh/v122/@xmldom/xmldom@0.8.8/deno/xmldom.mjs": "8e02f95e0d9aa0ff570a5dbc2e42f8276a4f5bff1e80de99c8d050278e5e459f",
+    "https://esm.sh/v122/@xmldom/xmldom@0.8.8/index.d.ts": "f6c19634ce810470c7a1c25a97e182232c2a10afc27db72e836b594f3e69e419"
   }
 }

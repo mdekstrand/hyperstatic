@@ -1,7 +1,8 @@
 {
   "imports": {
     "std/": "https://deno.land/std@0.190.0/",
-    "deno-dom": "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts"
+    "deno-dom": "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts",
+    "xmldom": "https://esm.sh/@xmldom/xmldom@v0.8.8"
   },
   "lint": {
     "rules": {
