@@ -33,6 +33,8 @@
     "https://deno.land/x/hyperstatic@v0.1.1/spec.js": "d8754b67b804658ae859d5df4fd4e403b0bc05b5d1d5d4ecd7b55b6c89bbb783",
     "https://esm.sh/@xmldom/xmldom@v0.8.8": "53c888ba22f49c7ce27e4fb8225cdcbc9a97b5a5f3a6d81550f40c1f985ac573",
     "https://esm.sh/v122/@xmldom/xmldom@0.8.8/deno/xmldom.mjs": "8e02f95e0d9aa0ff570a5dbc2e42f8276a4f5bff1e80de99c8d050278e5e459f",
-    "https://esm.sh/v122/@xmldom/xmldom@0.8.8/index.d.ts": "f6c19634ce810470c7a1c25a97e182232c2a10afc27db72e836b594f3e69e419"
+    "https://esm.sh/v122/@xmldom/xmldom@0.8.8/denonext/xmldom.mjs": "4548c538a7b13303d95bcd26b92a04644802f7ea9c59c61b1cc1505a80904708",
+    "https://esm.sh/v122/@xmldom/xmldom@0.8.8/index.d.ts": "f6c19634ce810470c7a1c25a97e182232c2a10afc27db72e836b594f3e69e419",
+    "https://esm.sh/v122/@xmldom/xmldom@v0.8.8": "1771887e7d287c37bd28d9d79014240e47039d0aed33b7ed8d392f3c72d44a16"
   }
 }

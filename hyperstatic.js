@@ -5,6 +5,10 @@ function isNode(o) {
   return o && o.nodeType && o.nodeName;
 }
 
+function normalizeAttr(name) {
+  return name.replace(/(?<=.)[A-Z]/g, '-$&').toLowerCase();
+}
+
 /**
  * Context for a HyperStatic instance.
  * @typedef {Object} HSContext
@@ -49,7 +53,7 @@ export function hyperstatic(context) {
   function createElement(name, attrs, ...content) {
     let elt = document.createElement(name);
     for (let k in attrs) {
-      elt.setAttribute(k, attrs[k]);
+      elt.setAttribute(normalizeAttr(k), attrs[k]);
     }
     let lstack = [];
     let cl = {
