@@ -6,7 +6,7 @@ function isNode(o) {
 }
 
 function normalizeAttr(name) {
-  return name.replace(/(?<=.)[A-Z]/g, '-$&').toLowerCase();
+  return name.replace(/(?<=.)[A-Z]/g, "-$&").toLowerCase();
 }
 
 /**
@@ -49,11 +49,16 @@ function normalizeAttr(name) {
 export function hyperstatic(context) {
   if (!context) context = window;
   let { document } = context;
+  let normalize = context.normalizeAttrs ?? true;
 
   function createElement(name, attrs, ...content) {
     let elt = document.createElement(name);
     for (let k in attrs) {
-      elt.setAttribute(normalizeAttr(k), attrs[k]);
+      let name = k;
+      if (normalize) {
+        name = normalizeAttr(name);
+      }
+      elt.setAttribute(name, attrs[k]);
     }
     let lstack = [];
     let cl = {

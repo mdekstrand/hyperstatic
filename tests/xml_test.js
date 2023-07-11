@@ -33,3 +33,19 @@ describe("xml namespaced dom", () => {
     assertEquals(elt.tagName, "element");
   });
 });
+
+describe("unnormalized attributes", () => {
+  let impl, document, x;
+  beforeEach(() => {
+    impl = new DOMImplementation();
+    document = impl.createDocument();
+    x = hyperstatic({ document, normalizeAttrs: false });
+  });
+
+  it("creates an empty element", () => {
+    let elt = x("svg", { viewBox: "0 0 10 10" });
+    assertEquals(elt.nodeName, "svg");
+    assertEquals(elt.tagName, "svg");
+    assertEquals(elt.getAttribute("viewBox"), "0 0 10 10");
+  });
+});
