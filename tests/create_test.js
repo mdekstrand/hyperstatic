@@ -1,4 +1,4 @@
-import { assertEquals, assertFalse, assertArrayIncludes } from "std/testing/asserts.ts";
+import { assertArrayIncludes, assertEquals, assertFalse } from "std/testing/asserts.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Node } from "deno-dom";
 
@@ -111,12 +111,12 @@ describe("createElement", () => {
   });
 
   it("creates an element with hyphenated attributes", () => {
-    let elt = h.createElement("span", {dataCitationCount: 42});
+    let elt = h.createElement("span", { dataCitationCount: 42 });
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "SPAN");
     // we have an attribute
-    assertArrayIncludes(elt.getAttributeNames(), ['data-citation-count']);
+    assertArrayIncludes(elt.getAttributeNames(), ["data-citation-count"]);
     // it has the right value
-    assertEquals(elt.getAttribute('data-citation-count'), '42');
+    assertEquals(elt.getAttribute("data-citation-count"), "42");
   });
 });

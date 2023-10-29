@@ -10,44 +10,12 @@ function normalizeAttr(name) {
 }
 
 /**
- * Context for a HyperStatic instance.
- * @typedef {Object} HSContext
- * @property {Document} document - a root document that will own created nodes.
- */
-
-/**
- * Type of HyperStatic child content.
- * @typedef {(Node|string|number|boolean|object|content[])} content
- */
-
-/**
- * Type for HyperStatic implementations.  An implementation is a function,
- * compatible with the usual hyperscript `h`. The function object has methods
- * and properties exposing additional functionality.
- * @typedef {Function} HyperStatic
- * @param {string} spec - the element specifier
- * @param {object} [attrs] - the attributes
- * @param {...content} content - the content
- * @property {CreateElement} createElement - React-compatible `createElement` method
- * @property {Document} document - the document in which elements are created
- */
-
-/**
- * Type for React-compatible `createElement` functions.
- * @typedef {Function} CreateElement
- * @param {string} name - the element name
- * @param {?object} attrs - the element attributes
- * @param {...content} content - the element content
- * @returns {Element} the constructed element
- */
-
-/**
  * Create a HyperStatic instance from a context.
  * @param {HSContext?} context - the context to use (e.g. `window`).
  * @returns {HyperStatic}the hyperstatic implementation.
  */
 export function hyperstatic(context) {
-  if (!context) context = window;
+  // if (!context) context = window;
   let { document } = context;
   let normalize = context.normalizeAttrs ?? true;
 
