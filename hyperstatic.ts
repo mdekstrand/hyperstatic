@@ -27,7 +27,7 @@ interface Stringable {
 }
 
 export type HyperAttrs = {
-  [key: string]: string | Stringable;
+  [key: string]: string | Stringable | null | undefined;
 };
 
 export type HyperContent<N> = N | string | Stringable | null | undefined | HyperContent<N>[];
@@ -68,7 +68,9 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
       if (normalize) {
         name = normalizeAttr(name);
       }
-      elt.setAttribute(name, attrs[k].toString());
+      if (attrs[k]) {
+        elt.setAttribute(name, attrs[k].toString());
+      }
     }
     let lstack = [];
     let cl = {
