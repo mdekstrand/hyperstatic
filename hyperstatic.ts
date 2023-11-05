@@ -30,13 +30,13 @@ export type HyperAttrs = {
   [key: string]: string | Stringable;
 };
 
-type Content<N> = N | string | Stringable | Content<N>[];
+export type HyperContent<N> = N | string | Stringable | HyperContent<N>[];
 
 export type HyperStatic<D, N, E extends N> = {
-  (spec: string, ...names: Content<N>[]): E;
-  (spec: string, attrs: HyperAttrs, ...names: Content<N>[]): E;
+  (spec: string, ...names: HyperContent<N>[]): E;
+  (spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
   document: D;
-  createElement(spec: string, attrs: HyperAttrs, ...names: Content<N>[]): E;
+  createElement(spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -60,7 +60,7 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
   let { document } = context;
   let normalize = context.normalizeAttrs ?? true;
 
-  function createElement(name: string, attrs: HyperAttrs, ...content: Content<HNode<N>>[]) {
+  function createElement(name: string, attrs: HyperAttrs, ...content: HyperContent<HNode<N>>[]) {
     let elt = document.createElement(name);
     for (let k in attrs) {
       let name = k;
@@ -100,7 +100,7 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
   }
 
   // deno-lint-ignore no-explicit-any
-  function h(name: string, attrs: any, ...content: Content<N>[]) {
+  function h(name: string, attrs: any, ...content: HyperContent<N>[]) {
     // handle name and initial classes
     let spec = parse(name);
 
