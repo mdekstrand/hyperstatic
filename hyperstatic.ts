@@ -35,6 +35,7 @@ export type HyperContent<N> = N | string | Stringable | HyperContent<N>[];
 export type HyperStatic<D, N, E extends N> = {
   (spec: string, ...names: HyperContent<N>[]): E;
   (spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
+  (spec: string, attrs: HyperAttrs | HyperContent<E>, ...names: HyperContent<N>[]): E;
   document: D;
   createElement(spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
 };
