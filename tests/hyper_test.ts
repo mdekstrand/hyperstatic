@@ -19,6 +19,13 @@ describe("h", () => {
     assertEquals(elt.childNodes.length, 0);
   });
 
+  it("ignores null", () => {
+    let elt = h("div", {}, null);
+    assertEquals(elt.nodeType, Node.ELEMENT_NODE);
+    assertEquals(elt.nodeName, "DIV");
+    assertEquals(elt.childNodes.length, 0);
+  });
+
   it("creates an element with attributes", () => {
     let elt = h("a", { id: "link", href: "https://example.com" });
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);

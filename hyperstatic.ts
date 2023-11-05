@@ -30,7 +30,7 @@ export type HyperAttrs = {
   [key: string]: string | Stringable;
 };
 
-export type HyperContent<N> = N | string | Stringable | HyperContent<N>[];
+export type HyperContent<N> = N | string | Stringable | null | undefined | HyperContent<N>[];
 
 export type HyperStatic<D, N, E extends N> = {
   (spec: string, ...names: HyperContent<N>[]): E;
@@ -92,7 +92,7 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
       } else if (Array.isArray(x)) {
         lstack.push(cl);
         cl = { pos: 0, content: x };
-      } else {
+      } else if (x != null) {
         elt.appendChild(document.createTextNode(x.toString()));
       }
     }
