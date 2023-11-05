@@ -26,7 +26,7 @@ interface Stringable {
   toString(): string;
 }
 
-type Attrs = {
+export type HyperAttrs = {
   [key: string]: string | Stringable;
 };
 
@@ -34,9 +34,9 @@ type Content<N> = N | string | Stringable | Content<N>[];
 
 export type HyperStatic<D, N, E extends N> = {
   (spec: string, ...names: Content<N>[]): E;
-  (spec: string, attrs: Attrs, ...names: Content<N>[]): E;
+  (spec: string, attrs: HyperAttrs, ...names: Content<N>[]): E;
   document: D;
-  createElement(spec: string, attrs: Attrs, ...names: Content<N>[]): E;
+  createElement(spec: string, attrs: HyperAttrs, ...names: Content<N>[]): E;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -60,7 +60,7 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
   let { document } = context;
   let normalize = context.normalizeAttrs ?? true;
 
-  function createElement(name: string, attrs: Attrs, ...content: Content<HNode<N>>[]) {
+  function createElement(name: string, attrs: HyperAttrs, ...content: Content<HNode<N>>[]) {
     let elt = document.createElement(name);
     for (let k in attrs) {
       let name = k;
