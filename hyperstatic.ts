@@ -18,11 +18,15 @@ interface HSContext<D extends HDocument<N, E>, N extends HNode<N>, E extends HEl
   normalizeAttrs?: boolean;
 }
 
+interface Stringable {
+  toString(): string;
+}
+
 type Attrs = {
-  [key: string]: string;
+  [key: string]: string | Stringable;
 };
 
-type Content<N> = N | string | number | boolean | object | Content<N>[];
+type Content<N> = N | string | Stringable | Content<N>[];
 
 export type HyperStatic<D, N, E extends N> = {
   (spec: string, ...names: Content<N>[]): E;
@@ -48,7 +52,7 @@ function normalizeAttr(name: string): string {
  */
 export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E extends HElement & N>(
   context: HSContext<D, N, E>,
-) {
+): HyperStatic<D, N, E> {
   let { document } = context;
   let normalize = context.normalizeAttrs ?? true;
 
@@ -59,7 +63,7 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
       if (normalize) {
         name = normalizeAttr(name);
       }
-      elt.setAttribute(name, attrs[k]);
+      elt.setAttribute(name, attrs[k].toString());
     }
     let lstack = [];
     let cl = {
@@ -91,7 +95,8 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
     return elt;
   }
 
-  function h(name: string, attrs?: Attrs, ...content: Content<N>[]) {
+  // deno-lint-ignore no-explicit-any
+  function h(name: string, attrs: any, ...content: Content<N>[]) {
     // handle name and initial classes
     let spec = parse(name);
 
@@ -127,5 +132,5 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
  * Default HyperStatic implementation using the document from the global `window` object.
  * @type {HyperStatic}
  */
-export const h = hyperstatic(window);
+export const h: HyperStatic<Document, Node, Element> = hyperstatic(window);
 export default h;

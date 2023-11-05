@@ -5,7 +5,7 @@ import { Document, DOMImplementation, Element, Node } from "xmldom";
 import { HyperStatic, hyperstatic } from "../hyperstatic.ts";
 
 describe("xml basic dom", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Document, Element, Node>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Document, Node, Element>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument();

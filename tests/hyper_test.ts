@@ -1,11 +1,11 @@
 import { assertEquals } from "std/testing/asserts.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
-import { Document, Node } from "deno-dom";
+import { Document, Element, Node } from "deno-dom";
 
-import { hyperstatic } from "../hyperstatic.ts";
+import { HyperStatic, hyperstatic } from "../hyperstatic.ts";
 
 describe("h", () => {
-  let h;
+  let h: HyperStatic<Document, Node, Element>;
   beforeEach(() => {
     h = hyperstatic({
       document: new Document(),
