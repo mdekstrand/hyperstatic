@@ -2,7 +2,7 @@ import { assertArrayIncludes, assertEquals, assertFalse } from "std/testing/asse
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Node } from "deno-dom";
 
-import { hyperstatic } from "../hyperstatic.js";
+import { hyperstatic } from "../hyperstatic.ts";
 
 describe("createElement", () => {
   let h;
