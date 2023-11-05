@@ -13,9 +13,13 @@ interface HElement {
   setAttribute(name: string, value: string): void;
 }
 
-interface HSContext<D extends HDocument<N, E>, N extends HNode<N>, E extends HElement & N> {
-  document: D;
+export type HyperOptions = {
   normalizeAttrs?: boolean;
+};
+
+interface HSContext<D extends HDocument<N, E>, N extends HNode<N>, E extends HElement & N>
+  extends HyperOptions {
+  document: D;
 }
 
 interface Stringable {
