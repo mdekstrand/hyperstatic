@@ -17,7 +17,7 @@ It provides a HyperScript-compatible `h` function, along with React-compatible
 To use in the browser:
 
 ```javascript
-import { h } from 'https://deno.land/x/hyperstatic/hyperstatic.js';
+import { h } from 'https://deno.land/x/hyperstatic/hyperstatic.ts';
 
 let elt = h('a.link', {href: 'https://example.com'}, 'Example');
 ```
