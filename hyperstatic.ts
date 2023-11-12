@@ -37,7 +37,7 @@ export type HyperStatic<D, N, E extends N> = {
   (spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
   (spec: string, attrs: HyperAttrs | HyperContent<E>, ...names: HyperContent<N>[]): E;
   document: D;
-  createElement(spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
+  createElement(spec: string, attrs?: HyperAttrs, ...names: HyperContent<N>[]): E;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -61,15 +61,17 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
   let { document } = context;
   let normalize = context.normalizeAttrs ?? true;
 
-  function createElement(name: string, attrs: HyperAttrs, ...content: HyperContent<HNode<N>>[]) {
+  function createElement(name: string, attrs?: HyperAttrs, ...content: HyperContent<HNode<N>>[]) {
     let elt = document.createElement(name);
+    if (!attrs) attrs = {};
     for (let k in attrs) {
       let name = k;
       if (normalize) {
         name = normalizeAttr(name);
       }
-      if (attrs[k]) {
-        elt.setAttribute(name, attrs[k].toString());
+      let val = attrs[k];
+      if (val) {
+        elt.setAttribute(name, val.toString());
       }
     }
     let lstack = [];
