@@ -26,7 +26,7 @@ To use in Deno:
 
 ```javascript
 import { Document } from 'https://deno.land/x/deno_dom/deno-dom-wasm.ts';
-import { hyperstatic } from 'https://deno.land/x/hyperstatic/hyperstatic.js';
+import { hyperstatic } from 'https://deno.land/x/hyperstatic/hyperstatic.ts';
 const h = hyperstatic({
     document: new Document()
 });
