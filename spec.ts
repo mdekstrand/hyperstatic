@@ -1,20 +1,20 @@
 /**
- * Element specifier.
- * @typedef {Object} ElementSpec
- * @property {string} name - the element name
- * @property {?string} id - the element ID
- * @property {?string[]} classes - the element classes
+ * Parsed elemenet specifiers.
  */
+export type ElementSpec = {
+  name: string;
+  id?: string;
+  classes?: string[];
+};
 
 /**
  * Parse a Hyperscript-style element specifier.
  *
  * This function is only exported for testing.
  *
- * @param {string} spec - a Hyperscript-style element specifier with optional classes and ID.
- * @returns {ElementSpec} - the parsed element specifier.
+ * @param spec a Hyperscript-style element specifier with optional classes and ID.
  */
-export function parse(spec) {
+export function parse(spec: string): ElementSpec {
   let id, classes, name;
 
   // do we have an id specifier?

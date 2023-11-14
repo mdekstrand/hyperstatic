@@ -1,4 +1,4 @@
-import { parse } from "./spec.js";
+import { parse } from "./spec.ts";
 
 interface HDocument<N extends HNode<N>, E extends HElement & N> {
   createElement(name: string): E;
