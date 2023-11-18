@@ -36,6 +36,8 @@ export type HyperAttrs = {
 
 export type HyperContent<N> = N | string | Stringable | null | undefined | HyperContent<N>[];
 
+export type Component<E, T> = (props: T) => E;
+
 export type JSXProps<N> = HyperAttrs & {
   dangerouslySetInnerHTML?: string;
   children?: HyperContent<N>[];
@@ -109,7 +111,10 @@ export function hyperstatic<
     }
   }
 
-  function create(name: string | symbol, props?: JSXProps<N>): E {
+  function create<T>(
+    name: string | symbol | Component<E, T>,
+    props?: JSXProps<N> | T,
+  ): { elt: E; final: boolean } {
     let elt: E | undefined;
     if (name == Fragment) {
       // deno-lint-ignore no-explicit-any
@@ -117,8 +122,10 @@ export function hyperstatic<
       elt = tmpl.content;
     } else if (typeof name == "string") {
       elt = document.createElement(name);
+    } else if (typeof name == "function") {
+      return { elt: name(props as T), final: true };
     } else {
-      throw new Error(`unsupproted element ${name.toString()}`);
+      throw new Error(`unsupported element ${name.toString()}`);
     }
 
     props ??= {};
@@ -128,16 +135,23 @@ export function hyperstatic<
       if (normalize) {
         name = normalizeAttr(name);
       }
-      let val = props[k];
+      let val = (props as JSXProps<N>)[k];
       if (val) {
         elt!.setAttribute(name, val.toString());
       }
     }
-    return elt!;
+    return { elt: elt!, final: false };
   }
 
-  function jsx(name: string | symbol, props?: JSXProps<N>, _key?: unknown): N {
-    let elt = create(name, props);
+  function jsx<T>(
+    name: string | symbol | Component<E, T>,
+    arg?: JSXProps<N> | T,
+    _key?: unknown,
+  ): N {
+    let { elt, final } = create(name, arg);
+    if (final) return elt;
+
+    let props = arg as JSXProps<N>;
     if (props?.dangerouslySetInnerHTML) {
       elt.innerHTML = props.dangerouslySetInnerHTML;
     } else if (props?.children) {
@@ -148,7 +162,9 @@ export function hyperstatic<
   }
 
   function jsxs(name: string | symbol, props?: JSXProps<N>, _key?: unknown): N {
-    let elt = create(name, props);
+    let { elt, final } = create(name, props);
+    if (final) return elt;
+
     if (props?.dangerouslySetInnerHTML) {
       elt.innerHTML = props.dangerouslySetInnerHTML;
     } else if (props?.children) {

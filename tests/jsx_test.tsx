@@ -5,6 +5,10 @@ import { Document, DocumentFragment, Element, Node } from "deno-dom";
 
 import { HyperStatic, hyperstatic } from "../hyperstatic.ts";
 
+function Custom(props: { msg: string }) {
+  return <span class="msg">{props.msg}</span>;
+}
+
 describe("modern JSX", () => {
   it("creates an empty element", () => {
     let elt = <div></div>;
@@ -48,5 +52,14 @@ describe("modern JSX", () => {
     assertInstanceOf(xyz, DocumentFragment);
     root.append(xyz);
     assertEquals(root.outerHTML, "<div>xyz <hr></div>");
+  });
+
+  it("instantiates a custom element", () => {
+    let root = (
+      <div>
+        <Custom msg="foo" />
+      </div>
+    );
+    assertEquals(root.outerHTML, '<div><span class="msg">foo</span></div>');
   });
 });
