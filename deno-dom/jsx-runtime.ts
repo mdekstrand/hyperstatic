@@ -1,4 +1,4 @@
-import { h } from "../index.ts";
+import { h } from "../mod.ts";
 
 export const jsx = h.jsx;
 export const jsxs = h.jsxs;
