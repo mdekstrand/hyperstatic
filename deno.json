@@ -2,7 +2,8 @@
   "imports": {
     "std/": "https://deno.land/std@0.190.0/",
     "deno-dom": "https://deno.land/x/deno_dom@v0.1.38/deno-dom-wasm.ts",
-    "xmldom": "https://esm.sh/v122/@xmldom/xmldom@v0.8.8"
+    "xmldom": "https://esm.sh/v122/@xmldom/xmldom@v0.8.8",
+    "hyperdeno/jsx-runtime": "./deno-dom/jsx-runtime/index.ts"
   },
   "lint": {
     "rules": {

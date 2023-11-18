@@ -1,5 +1,7 @@
 import { parse } from "./spec.ts";
 
+export const Fragment = Symbol("HyperFragment");
+
 interface HDocument<N extends HNode<N>, E extends HElement & N> {
   createElement(name: string): E;
   createTextNode(text: string): N;
@@ -11,6 +13,8 @@ interface HNode<N> {
 
 interface HElement {
   setAttribute(name: string, value: string): void;
+  append(...children: unknown[]): void;
+  innerHTML: string;
 }
 
 export type HyperOptions = {
@@ -32,12 +36,22 @@ export type HyperAttrs = {
 
 export type HyperContent<N> = N | string | Stringable | null | undefined | HyperContent<N>[];
 
+export type JSXProps<N> = HyperAttrs & {
+  dangerouslySetInnerHTML?: string;
+  children?: HyperContent<N>[];
+};
+
 export type HyperStatic<D, N, E extends N> = {
   (spec: string, ...names: HyperContent<N>[]): E;
   (spec: string, attrs: HyperAttrs, ...names: HyperContent<N>[]): E;
   (spec: string, attrs: HyperAttrs | HyperContent<E>, ...names: HyperContent<N>[]): E;
   document: D;
-  createElement(spec: string, attrs?: HyperAttrs, ...names: HyperContent<N>[]): E;
+
+  Fragment: symbol;
+  createElement(spec: string | symbol, attrs?: HyperAttrs, ...names: HyperContent<N>[]): E;
+
+  jsx(spec: string, props?: JSXProps<N>, key?: unknown): E;
+  jsxs(spec: string, props?: JSXProps<N>, key?: unknown): E;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -61,19 +75,8 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
   let { document } = context;
   let normalize = context.normalizeAttrs ?? true;
 
-  function createElement(name: string, attrs?: HyperAttrs, ...content: HyperContent<HNode<N>>[]) {
-    let elt = document.createElement(name);
-    if (!attrs) attrs = {};
-    for (let k in attrs) {
-      let name = k;
-      if (normalize) {
-        name = normalizeAttr(name);
-      }
-      let val = attrs[k];
-      if (val) {
-        elt.setAttribute(name, val.toString());
-      }
-    }
+  function appendChildren(elt: E, content?: HyperContent<N>[]) {
+    content ??= [];
     let lstack = [];
     let cl = {
       pos: 0,
@@ -100,8 +103,63 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
         elt.appendChild(document.createTextNode(x.toString()));
       }
     }
+  }
 
+  function create(name: string | symbol, props?: JSXProps<N>): E {
+    let elt: E | undefined;
+    if (name == Fragment) {
+      // deno-lint-ignore no-explicit-any
+      let tmpl = document.createElement("template") as any;
+      elt = tmpl.content;
+    } else if (typeof name == "string") {
+      elt = document.createElement(name);
+    } else {
+      throw new Error(`unsupproted element ${name.toString()}`);
+    }
+
+    props ??= {};
+    for (let k in props) {
+      if (k == "children" || k == "dangerouslySetInnerHTML") continue;
+      let name = k;
+      if (normalize) {
+        name = normalizeAttr(name);
+      }
+      let val = props[k];
+      if (val) {
+        elt!.setAttribute(name, val.toString());
+      }
+    }
+    return elt!;
+  }
+
+  function jsx(name: string | symbol, props?: JSXProps<N>, _key?: unknown): N {
+    let elt = create(name, props);
+    if (props?.dangerouslySetInnerHTML) {
+      elt.innerHTML = props.dangerouslySetInnerHTML;
+    } else if (props?.children) {
+      let children = Array.isArray(props.children) ? props.children : [props.children];
+      appendChildren(elt, children);
+    }
     return elt;
+  }
+
+  function jsxs(name: string | symbol, props?: JSXProps<N>, _key?: unknown): N {
+    let elt = create(name, props);
+    if (props?.dangerouslySetInnerHTML) {
+      elt.innerHTML = props.dangerouslySetInnerHTML;
+    } else if (props?.children) {
+      // deno-lint-ignore no-explicit-any
+      elt.append(...props.children as any[]);
+    }
+    return elt;
+  }
+
+  function createElement(
+    name: string | symbol,
+    attrs?: HyperAttrs,
+    ...content: HyperContent<HNode<N>>[]
+  ) {
+    return jsx(name, { children: content, ...attrs });
   }
 
   // deno-lint-ignore no-explicit-any
@@ -132,7 +190,10 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
     return createElement(spec.name, attrs, ...content);
   }
 
+  h.Fragment = Fragment;
   h.createElement = createElement;
+  h.jsx = jsx;
+  h.jsxs = jsxs;
   h.document = document;
   return h;
 }
