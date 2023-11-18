@@ -1,4 +1,4 @@
-import { assertEquals, assertFalse, assertStrictEquals } from "std/testing/asserts.ts";
+import { assertEquals, assertFalse, assertStrictEquals } from "std/assert/mod.ts";
 import { describe, it } from "std/testing/bdd.ts";
 import { parse } from "../spec.ts";
 

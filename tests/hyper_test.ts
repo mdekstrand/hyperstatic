@@ -1,4 +1,4 @@
-import { assertEquals } from "std/testing/asserts.ts";
+import { assertEquals } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Element, Node } from "deno-dom";
 

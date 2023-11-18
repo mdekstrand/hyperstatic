@@ -1,5 +1,5 @@
 import { React } from "./dft-react.ts";
-import { assertEquals, assertInstanceOf } from "std/testing/asserts.ts";
+import { assertEquals, assertInstanceOf } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, DocumentFragment, Element, Node } from "deno-dom";
 

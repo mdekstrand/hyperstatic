@@ -1,4 +1,4 @@
-import { assertArrayIncludes, assertEquals, assertFalse } from "std/testing/asserts.ts";
+import { assertArrayIncludes, assertEquals, assertFalse } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Node } from "deno-dom";
 
