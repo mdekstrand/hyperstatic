@@ -12,7 +12,8 @@ properties for modern environments:
 - can be instantiated with different DOM implementations like [deno_dom][] or xmldom
 
 It provides a HyperScript-compatible `h` function, along with React-compatible
-`createElement`.  It also generally works fine with XML, not just HTML.
+`createElement`.  It also generally works fine with XML, not just HTML, for example
+with [xmldom](https://www.npmjs.com/package/@xmldom/xmldom).
 
 To use in the browser:
 
