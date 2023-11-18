@@ -62,4 +62,30 @@ describe("modern JSX", () => {
     );
     assertEquals(root.outerHTML, '<div><span class="msg">foo</span></div>');
   });
+
+  it("omits null", () => {
+    let root = (
+      <div>
+        {null}
+      </div>
+    );
+    assertEquals(root.outerHTML, "<div></div>");
+  });
+
+  it("can construct a whole page", () => {
+    let root = (
+      <html>
+        <head>
+          <title>foobie</title>
+        </head>
+        <body>
+          <h1>bletch</h1>
+        </body>
+      </html>
+    );
+    assertEquals(
+      root.outerHTML,
+      "<html><head><title>foobie</title></head><body><h1>bletch</h1></body></html>",
+    );
+  });
 });

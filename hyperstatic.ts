@@ -98,14 +98,16 @@ export function hyperstatic<
       let x = cl.content[cl.pos];
       cl.pos += 1;
       // process it
-      if (typeof x == "string") {
+      if (x == null) {
+        continue;
+      } else if (typeof x == "string") {
         elt.appendChild(document.createTextNode(x));
       } else if (isNode<N>(x)) {
         elt.appendChild(x);
       } else if (Array.isArray(x)) {
         lstack.push(cl);
         cl = { pos: 0, content: x };
-      } else if (x != null) {
+      } else {
         elt.appendChild(document.createTextNode(x.toString()));
       }
     }
