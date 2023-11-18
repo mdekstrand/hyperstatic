@@ -48,10 +48,10 @@ export type HyperStatic<D, N, E extends N> = {
   document: D;
 
   Fragment: symbol;
-  createElement(spec: string | symbol, attrs?: HyperAttrs, ...names: HyperContent<N>[]): E;
+  createElement(spec: string | symbol, attrs?: HyperAttrs, ...names: HyperContent<N>[]): N;
 
-  jsx(spec: string, props?: JSXProps<N>, key?: unknown): E;
-  jsxs(spec: string, props?: JSXProps<N>, key?: unknown): E;
+  jsx(spec: string, props?: JSXProps<N>, key?: unknown): N;
+  jsxs(spec: string, props?: JSXProps<N>, key?: unknown): N;
 };
 
 // deno-lint-ignore no-explicit-any
@@ -69,7 +69,11 @@ function normalizeAttr(name: string): string {
  * @param {HSContext?} context - the context to use (e.g. `window`).
  * @returns {HyperStatic}the hyperstatic implementation.
  */
-export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E extends HElement & N>(
+export function hyperstatic<
+  D extends HDocument<N, E>,
+  N extends HNode<N>,
+  E extends (HElement & N),
+>(
   context: HSContext<D, N, E>,
 ): HyperStatic<D, N, E> {
   let { document } = context;
@@ -158,7 +162,7 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
     name: string | symbol,
     attrs?: HyperAttrs,
     ...content: HyperContent<HNode<N>>[]
-  ) {
+  ): N {
     return jsx(name, { children: content, ...attrs });
   }
 
@@ -187,7 +191,9 @@ export function hyperstatic<D extends HDocument<N, E>, N extends HNode<N>, E ext
     }
 
     // and now we can create
-    return createElement(spec.name, attrs, ...content);
+    // returns an E, which is an N, but the type isn't letting us express that
+    // deno-lint-ignore no-explicit-any
+    return createElement(spec.name, attrs, ...content) as any;
   }
 
   h.Fragment = Fragment;

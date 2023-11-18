@@ -1,5 +1,7 @@
-import { Document } from "deno-dom";
+import { Document, DocumentFragment, Element, Node } from "deno-dom";
 import { hyperstatic } from "../hyperstatic.ts";
+
+export { Document, DocumentFragment, Element, Node };
 
 /**
  * A {@link hyperstatic} instance using DenoDOM.
