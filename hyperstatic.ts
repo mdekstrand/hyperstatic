@@ -163,19 +163,6 @@ export function hyperstatic<
     return elt;
   }
 
-  function jsxs(name: string | symbol, props?: JSXProps<N>, _key?: unknown): N {
-    let { elt, final } = create(name, props);
-    if (final) return elt;
-
-    if (props?.dangerouslySetInnerHTML) {
-      elt.innerHTML = props.dangerouslySetInnerHTML;
-    } else if (props?.children) {
-      // deno-lint-ignore no-explicit-any
-      elt.append(...props.children as any[]);
-    }
-    return elt;
-  }
-
   function createElement(
     name: string | symbol,
     attrs?: HyperAttrs,
@@ -217,7 +204,7 @@ export function hyperstatic<
   h.Fragment = Fragment;
   h.createElement = createElement;
   h.jsx = jsx;
-  h.jsxs = jsxs;
+  h.jsxs = jsx;
   h.document = document;
   return h;
 }
