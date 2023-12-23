@@ -138,7 +138,9 @@ export function hyperstatic<
         name = normalizeAttr(name);
       }
       let val = (props as JSXProps<N>)[k];
-      if (val) {
+      if (val === true) {
+        elt!.setAttribute(name, "");
+      } else if (val != null) {
         elt!.setAttribute(name, val.toString());
       }
     }

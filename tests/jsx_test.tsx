@@ -72,6 +72,11 @@ describe("modern JSX", () => {
     assertEquals(root.outerHTML, "<div></div>");
   });
 
+  it("handles no-value attributes", () => {
+    let root = <div data-pagefind-ignore />;
+    assertEquals(root.outerHTML, '<div data-pagefind-ignore=""></div>');
+  });
+
   it("can construct a whole page", () => {
     let root = (
       <html>
