@@ -5,13 +5,16 @@ export const Fragment = Symbol("HyperFragment");
 interface HDocument<N extends HNode<N>, E extends HElement & N> {
   createElement(name: string): E;
   createTextNode(text: string): N;
+  importNode(node: N, deep?: boolean): N;
 }
 
 interface HNode<N> {
   appendChild(node: N): void;
+  ownerDocument: unknown;
 }
 
 interface HElement {
+  ownerDocument: unknown;
   setAttribute(name: string, value: string): void;
   append(...children: unknown[]): void;
   innerHTML: string;
@@ -103,7 +106,8 @@ export function hyperstatic<
       } else if (typeof x == "string") {
         elt.appendChild(document.createTextNode(x));
       } else if (isNode<N>(x)) {
-        elt.appendChild(x);
+        let child = x.ownerDocument == document ? x : document.importNode(x, true);
+        elt.appendChild(child);
       } else if (Array.isArray(x)) {
         lstack.push(cl);
         cl = { pos: 0, content: x };
