@@ -221,3 +221,4 @@ export function hyperstatic<
  */
 export const h: HyperStatic<Document, Node, Element> = hyperstatic(window);
 export default h;
+export const createElement = h.createElement;
