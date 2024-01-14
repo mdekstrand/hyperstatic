@@ -1,4 +1,4 @@
-import { h } from "../hyperstatic.ts";
+import { h } from "./mod.ts";
 
 export const jsx = h.jsx;
 export const jsxs = h.jsxs;
