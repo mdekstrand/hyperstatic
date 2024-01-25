@@ -214,11 +214,3 @@ export function hyperstatic<
   h.document = document;
   return h;
 }
-
-/**
- * Default HyperStatic implementation using the document from the global `window` object.
- * @type {HyperStatic}
- */
-export const h: HyperStatic<Document, Node, Element> = hyperstatic(window);
-export default h;
-export const createElement = h.createElement;
