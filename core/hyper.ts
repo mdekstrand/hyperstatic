@@ -1,6 +1,7 @@
 import { HSContent, HSContext, HyperStatic } from "./defs.ts";
 import { HyperFactory, HyperOptions } from "./factory.ts";
 import { parse } from "./spec.ts";
+export type { HyperStatic };
 
 export function hyperstatic<N, E extends N>(
   ctx: HSContext<N, E>,
