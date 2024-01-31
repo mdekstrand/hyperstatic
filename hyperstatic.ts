@@ -34,7 +34,7 @@ interface Stringable {
 }
 
 export type HyperAttrs = {
-  [key: string]: string | Stringable | null | undefined;
+  [key: string]: string | Stringable | true | null | undefined;
 };
 
 export type HyperContent<N> = N | string | Stringable | null | undefined | HyperContent<N>[];
