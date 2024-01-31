@@ -1,7 +1,10 @@
-import { HSContext, HyperStatic } from "./core/defs.ts";
+import { HSContent, HSContext, HyperStatic } from "./core/defs.ts";
 import { HyperFactory, HyperOptions } from "./core/factory.ts";
 import { hyperstatic as makeHyper } from "./core/hyper.ts";
 import { DOMContext, DOMDocument, HElement, HNode } from "./core/dom.ts";
+
+export type { HSContent, HSContext, HyperOptions, HyperStatic };
+export { DOMContext, HyperFactory };
 
 /**
  * Construct a hyperstatic instance from a context, factory, or DOM document.
