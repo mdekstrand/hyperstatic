@@ -2,14 +2,15 @@ import { assertEquals } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Element, Node } from "deno-dom";
 
-import { HyperStatic, hyperstatic } from "../hyperstatic.ts";
+import { DOMContext } from "../core/dom.ts";
+import { HyperStatic } from "../core/defs.ts";
+import { hyperstatic } from "../core/hyper.ts";
 
 describe("h", () => {
-  let h: HyperStatic<Document, Node, Element>;
+  let h: HyperStatic<Node, Element>;
   beforeEach(() => {
-    h = hyperstatic({
-      document: new Document(),
-    });
+    let ctx = new DOMContext<Node, Element, Document>(new Document());
+    h = hyperstatic(ctx);
   });
 
   it("creates an empty element", () => {

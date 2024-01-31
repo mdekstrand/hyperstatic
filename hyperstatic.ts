@@ -1,4 +1,4 @@
-import { parse } from "./spec.ts";
+import { parse } from "./core/spec.ts";
 
 export const Fragment = Symbol("HyperFragment");
 
