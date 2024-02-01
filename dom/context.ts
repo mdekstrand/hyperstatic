@@ -1,6 +1,9 @@
 import { HSContext, HyperFragment } from "../core/defs.ts";
 import { DOMDocument, HElement, HNode } from "./types.ts";
 
+/**
+ * A HyperScript context that instantiates DOM nodes.
+ */
 export class DOMContext<
   N extends HNode<N, E>,
   E extends HElement<N, E> & N,

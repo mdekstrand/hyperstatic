@@ -5,7 +5,7 @@ export interface DOMDocument<N, E extends N> {
 }
 
 export interface HNode<N, E extends N> {
-  nodeType: unknown;
+  nodeType: number;
   nodeName: string;
   appendChild(node: N): HNode<N, E>;
   ownerDocument: DOMDocument<N, E> | null;
