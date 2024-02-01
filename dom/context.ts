@@ -1,25 +1,5 @@
-import { HSContext } from "./defs.ts";
-
-const HyperFragment = Symbol("HyperFragment");
-
-export interface DOMDocument<N, E extends N> {
-  createElement(name: string): E;
-  createTextNode(text: string): N;
-  importNode(node: N, deep?: boolean): N;
-}
-
-export interface HNode<N, E extends N> {
-  nodeType: unknown;
-  nodeName: string;
-  appendChild(node: N): HNode<N, E>;
-  ownerDocument: DOMDocument<N, E> | null;
-}
-
-export interface HElement<N, E extends N> extends HNode<N, E> {
-  setAttribute(name: string, value: string): void;
-  append(...children: unknown[]): void;
-  innerHTML: string;
-}
+import { HSContext, HyperFragment } from "../core/defs.ts";
+import { DOMDocument, HElement, HNode } from "./types.ts";
 
 export class DOMContext<
   N extends HNode<N, E>,

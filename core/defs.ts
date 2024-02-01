@@ -1,3 +1,5 @@
+export const HyperFragment = Symbol("HyperFragment");
+
 interface Stringable {
   toString(): string;
 }

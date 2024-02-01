@@ -2,7 +2,7 @@ import { assertEquals } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Element, Node } from "deno-dom";
 
-import { DOMContext } from "../core/dom.ts";
+import { DOMContext } from "../dom/context.ts";
 import { HyperStatic } from "../core/defs.ts";
 import { hyperstatic } from "../core/hyper.ts";
 
