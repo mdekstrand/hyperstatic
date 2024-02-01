@@ -1,6 +1,6 @@
 import { Document, DocumentFragment, Element, Node } from "deno-dom";
 import { hyperstatic } from "../core/hyper.ts";
-import { DOMContext } from "../dom/context.ts";
+import { DOMContext } from "../core/dom.ts";
 
 export { Document, DocumentFragment, Element, Node };
 

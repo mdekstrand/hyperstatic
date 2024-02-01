@@ -1,8 +1,7 @@
 import { HSAttrs, HSContext, HSNode, HyperStatic } from "./core/defs.ts";
 import { HyperFactory, HyperOptions } from "./core/factory.ts";
 import { hyperstatic as makeHyper } from "./core/hyper.ts";
-import { DOMDocument, HElement, HNode } from "./dom/types.ts";
-import { DOMContext } from "./dom/context.ts";
+import { DOMContext, DOMDocument, DOMElement, DOMNode } from "./core/dom.ts";
 
 export type { HSAttrs, HSContext, HSNode, HyperOptions, HyperStatic };
 export { DOMContext, HyperFactory };
@@ -19,8 +18,8 @@ export function hyperstatic<N, E extends N>(
   options?: HyperOptions,
 ): HyperStatic<N, E>;
 export function hyperstatic<
-  N extends HNode<N, E>,
-  E extends HElement<N, E> & N,
+  N extends DOMNode<N, E>,
+  E extends DOMElement<N, E> & N,
   D extends DOMDocument<N, E>,
 >(doc: D): HyperStatic<N, E>;
 export function hyperstatic<N, E extends N>(
