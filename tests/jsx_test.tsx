@@ -3,8 +3,6 @@ import { assertEquals, assertInstanceOf } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, DocumentFragment, Element, Node } from "deno-dom";
 
-import { HyperStatic, hyperstatic } from "../hyperstatic.ts";
-
 function Custom(props: { msg: string }) {
   return <span class="msg">{props.msg}</span>;
 }

@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-window
 import { DOMContext } from "../core/dom.ts";
 import { HyperStatic, hyperstatic } from "../core/hyper.ts";
 

@@ -6,7 +6,9 @@ export type HSAttrs = {
   [key: string]: string | Stringable | true | null | undefined;
 };
 
-export type HSContent<N, E> = N | E | string | Stringable | null | undefined | HSContent<N, E>[];
+export type HSContent = string | Stringable | null | undefined;
+
+export type HSNode<N> = N | HSContent | HSNode<N>[];
 
 /**
  * Context for a HyperStatic implementation.
@@ -19,24 +21,24 @@ export interface HSContext<Node, Element extends Node> {
   setAttribute(node: Element, name: string, value: string): void;
   appendChild(parent: Element, child: Node): void;
   setInnerHTML(parent: Element, html: string): void;
-  isNode(o: HSContent<Node, Element>): o is Node;
+  isNode(o: HSNode<Node>): o is Node;
 }
 
 export type Component<E, T> = (props: T) => E;
 
-export type JSXProps<N, E> = HSAttrs & {
+export type JSXProps<N> = HSAttrs & {
   dangerouslySetInnerHTML?: string;
-  children?: HSContent<N, E>[];
+  children?: HSNode<N>[];
 };
 
 export interface HyperStatic<N, E extends N> {
-  (spec: string, ...children: HSContent<N, E>[]): E;
-  (spec: string, attrs: HSAttrs, ...children: HSContent<N, E>[]): E;
+  (spec: string, ...children: HSNode<N>[]): E;
+  (spec: string, attrs: HSAttrs, ...children: HSNode<N>[]): E;
 
   Fragment: symbol;
-  createElement(spec: string | symbol, attrs?: HSAttrs, ...children: HSContent<N, E>[]): N;
+  createElement(spec: string | symbol, attrs?: HSAttrs, ...children: HSNode<N>[]): N;
 
-  jsx(name: string | symbol, props?: JSXProps<N, E>, key?: unknown): N;
+  jsx(name: string | symbol, props?: JSXProps<N>, key?: unknown): N;
   jsx<T>(comp: Component<E, T>, props: T, key?: unknown): N;
-  jsxs(name: string | symbol, props?: JSXProps<N, E>, key?: unknown): N;
+  jsxs(name: string | symbol, props?: JSXProps<N>, key?: unknown): N;
 }

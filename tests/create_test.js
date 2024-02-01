@@ -2,14 +2,12 @@ import { assertArrayIncludes, assertEquals, assertFalse } from "std/assert/mod.t
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Node } from "deno-dom";
 
-import { hyperstatic } from "../hyperstatic.ts";
+import { hyperstatic } from "../mod.ts";
 
 describe("createElement", () => {
   let h;
   beforeEach(() => {
-    h = hyperstatic({
-      document: new Document(),
-    });
+    h = hyperstatic(new Document());
   });
 
   it("creates an empty element", () => {

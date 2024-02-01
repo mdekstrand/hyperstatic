@@ -1,4 +1,4 @@
-import { HSContent, HSContext, HyperStatic } from "./defs.ts";
+import { HSContext, HSNode, HyperStatic } from "./defs.ts";
 import { HyperFactory, HyperOptions } from "./factory.ts";
 import { parse } from "./spec.ts";
 export type { HyperStatic };
@@ -17,7 +17,7 @@ export function hyperstatic<N, E extends N>(
 ): HyperStatic<N, E> {
   let factory = cof instanceof HyperFactory ? cof : new HyperFactory(cof, options ?? {});
   // deno-lint-ignore no-explicit-any
-  function h(name: string, attrs: any, ...content: HSContent<N, E>[]) {
+  function h(name: string, attrs: any, ...content: HSNode<N>[]) {
     // handle name and initial classes
     let spec = parse(name);
 

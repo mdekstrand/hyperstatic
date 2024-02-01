@@ -2,14 +2,14 @@ import { assertEquals } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, DOMImplementation, Element, Node } from "xmldom";
 
-import { HyperStatic, hyperstatic } from "../hyperstatic.ts";
+import { HyperStatic, hyperstatic } from "../mod.ts";
 
 describe("xml basic dom", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Document, Node, Element>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument();
-    x = hyperstatic({ document });
+    x = hyperstatic(document);
   });
 
   it("creates an empty element", () => {
@@ -20,11 +20,11 @@ describe("xml basic dom", () => {
 });
 
 describe("xml namespaced dom", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Document, Element, Node>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument("https://xml.ekstrandom.net/example", "root");
-    x = hyperstatic({ document });
+    x = hyperstatic(document);
   });
 
   it("creates an empty element", () => {
@@ -35,11 +35,11 @@ describe("xml namespaced dom", () => {
 });
 
 describe("unnormalized attributes", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Document, Element, Node>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument();
-    x = hyperstatic({ document, normalizeAttrs: false });
+    x = hyperstatic(document, { normalizeAttrs: false });
   });
 
   it("creates an empty element", () => {

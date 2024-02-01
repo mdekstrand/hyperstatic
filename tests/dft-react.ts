@@ -1,8 +1,6 @@
 import { Document } from "deno-dom";
-import { hyperstatic } from "../hyperstatic.ts";
+import { hyperstatic } from "../mod.ts";
 
-export const React = hyperstatic({
-  document: new Document(),
-});
+export const React = hyperstatic(new Document());
 
 export default React;

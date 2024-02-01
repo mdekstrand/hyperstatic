@@ -1,4 +1,4 @@
-import { Component, HSAttrs, HSContent, HSContext, JSXProps } from "./defs.ts";
+import { Component, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.ts";
 
 export type HyperOptions = {
   normalizeAttrs?: boolean;
@@ -14,14 +14,16 @@ export class HyperFactory<N, E extends N> {
 
   constructor(ctx: HSContext<N, E>, opts: HyperOptions) {
     this.context = ctx;
-    this.options = opts;
+    this.options = Object.assign({
+      normalizeAttrs: true,
+    }, opts);
 
     // bind exposed methods
     this.createElement = this.createElement.bind(this);
     this.jsx = this.jsx.bind(this);
   }
 
-  appendChildren(elt: E, content?: HSContent<N, E>[]) {
+  appendChildren(elt: E, content?: HSNode<N>[]) {
     const ctx = this.context;
     content ??= [];
     let lstack = [];
@@ -56,7 +58,7 @@ export class HyperFactory<N, E extends N> {
 
   create<T>(
     name: string | symbol | Component<E, T>,
-    props?: JSXProps<N, E> | T,
+    props?: JSXProps<N> | T,
   ): { elt: E; final: boolean } {
     const ctx = this.context;
     let elt: E | undefined;
@@ -80,7 +82,7 @@ export class HyperFactory<N, E extends N> {
       if (this.options.normalizeAttrs) {
         name = normalizeAttr(name);
       }
-      let val = (props as JSXProps<N, E>)[k];
+      let val = (props as JSXProps<N>)[k];
       if (val === true) {
         ctx.setAttribute(elt!, name, "");
       } else if (val != null) {
@@ -92,13 +94,13 @@ export class HyperFactory<N, E extends N> {
 
   jsx<T>(
     name: string | symbol | Component<E, T>,
-    arg?: JSXProps<N, E> | T,
+    arg?: JSXProps<N> | T,
     _key?: unknown,
   ): N {
     let { elt, final } = this.create(name, arg);
     if (final) return elt;
 
-    let props = arg as JSXProps<N, E>;
+    let props = arg as JSXProps<N>;
     if (props?.dangerouslySetInnerHTML) {
       this.context.setInnerHTML(elt, props.dangerouslySetInnerHTML);
     } else if (props?.children) {
@@ -111,7 +113,7 @@ export class HyperFactory<N, E extends N> {
   createElement(
     name: string | symbol,
     attrs?: HSAttrs,
-    ...content: HSContent<N, E>[]
+    ...content: HSNode<N>[]
   ): N {
     return this.jsx(name, { children: content, ...attrs });
   }
