@@ -41,17 +41,15 @@ export class HyperFactory<N, E extends N> {
       let x = cl.content[cl.pos];
       cl.pos += 1;
       // process it
-      if (x == null) {
-        continue;
-      } else if (typeof x == "string") {
+      if (typeof x == "string") {
         ctx.appendChild(elt, ctx.createTextNode(x));
+      } else if (typeof x == "number") {
+        ctx.appendChild(elt, ctx.createTextNode(x.toString()));
       } else if (ctx.isNode(x)) {
         ctx.appendChild(elt, x);
       } else if (Array.isArray(x)) {
         lstack.push(cl);
         cl = { pos: 0, content: x };
-      } else {
-        ctx.appendChild(elt, ctx.createTextNode(x.toString()));
       }
     }
   }

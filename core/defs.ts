@@ -8,9 +8,10 @@ export type HSAttrs = {
   [key: string]: string | Stringable | true | null | undefined;
 };
 
-export type HSContent = string | Stringable | null | undefined;
+export type HSText = string | number;
+export type HSIgnore = undefined | null | boolean;
 
-export type HSNode<N> = N | HSContent | HSNode<N>[];
+export type HSNode<N> = N | HSText | HSIgnore | HSNode<N>[];
 
 /**
  * Context for a HyperStatic implementation.
