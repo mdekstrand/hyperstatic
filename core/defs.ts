@@ -21,6 +21,7 @@ export interface HSContext<Node, Element extends Node> {
 
   createElement(name: string): Element;
   createTextNode(text: string): Node;
+  createFragment(): Element;
   setAttribute(node: Element, name: string, value: string): void;
   appendChild(parent: Element, child: Node): void;
   setInnerHTML(parent: Element, html: string): void;

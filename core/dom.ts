@@ -31,6 +31,12 @@ export interface DOMElement<N, E extends N> extends DOMNode<N, E> {
   innerHTML: string;
 }
 
+// deno-lint-ignore no-explicit-any
+export function isDOMNode<N>(o: any): o is N {
+  // borrowed from hyperscript
+  return o && o.nodeType && o.nodeName;
+}
+
 /**
  * A HyperScript context that instantiates DOM nodes.
  */
@@ -54,6 +60,12 @@ export class DOMContext<
     return this.document.createTextNode(text);
   }
 
+  createFragment(): E {
+    let tmpl = this.document.createElement("template");
+    // @ts-ignore tmpl will be an HTMLTemplateElement with content
+    return tmpl.content;
+  }
+
   setAttribute(node: E, name: string, value: string): void {
     node.setAttribute(name, value);
   }
@@ -71,7 +83,6 @@ export class DOMContext<
 
   // deno-lint-ignore no-explicit-any
   isNode(o: any): o is N {
-    // borrowed from hyperscript
-    return o && o.nodeType && o.nodeName;
+    return isDOMNode(o);
   }
 }

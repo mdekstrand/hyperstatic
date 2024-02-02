@@ -61,10 +61,7 @@ export class HyperFactory<N, E extends N> {
     const ctx = this.context;
     let elt: E | undefined;
     if (name == ctx.Fragment) {
-      // FIXME: this only works on DOM
-      // deno-lint-ignore no-explicit-any
-      let tmpl = ctx.createElement("template") as any;
-      elt = tmpl.content;
+      elt = ctx.createFragment();
     } else if (typeof name == "string") {
       elt = ctx.createElement(name);
     } else if (typeof name == "function") {
