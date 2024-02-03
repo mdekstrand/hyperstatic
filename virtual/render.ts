@@ -3,7 +3,7 @@
  */
 
 import { isVDElement, VDNode } from "./vdom.ts";
-import { DOMDocument, DOMElement, DOMNode, isDOMNode } from "../core/dom.ts";
+import { DOMDocument, DOMNode, isDOMNode } from "../core/dom.ts";
 import { fail } from "std/assert/fail.ts";
 
 /**
@@ -20,10 +20,9 @@ import { fail } from "std/assert/fail.ts";
  * @returns The created node.
  */
 export function render<
-  N extends DOMNode<N, E>,
-  E extends DOMElement<N, E> & N,
-  D extends DOMDocument<N, E>,
->(vnode: VDNode, doc: D, parent?: E): N {
+  N extends DOMNode<N>,
+  D extends DOMDocument<N>,
+>(vnode: VDNode, doc: D, parent?: N): N {
   let node;
   let append = parent !== undefined;
   let children: VDNode[] = [];

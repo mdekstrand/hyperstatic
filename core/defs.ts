@@ -16,15 +16,15 @@ export type HSNode<N> = N | HSText | HSIgnore | HSNode<N>[];
 /**
  * Context for a HyperStatic implementation.
  */
-export interface HSContext<Node, Element extends Node> {
+export interface HSContext<Node> {
   Fragment: symbol;
 
-  createElement(name: string): Element;
+  createElement(name: string): Node;
   createTextNode(text: string): Node;
-  createFragment(): Element;
-  setAttribute(node: Element, name: string, value: string): void;
-  appendChild(parent: Element, child: Node): void;
-  setInnerHTML(parent: Element, html: string): void;
+  createFragment(): Node;
+  setAttribute(node: Node, name: string, value: string): void;
+  appendChild(parent: Node, child: Node): void;
+  setInnerHTML(parent: Node, html: string): void;
   isNode(o: HSNode<Node>): o is Node;
 }
 

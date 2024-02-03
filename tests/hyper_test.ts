@@ -9,7 +9,7 @@ import { hyperstatic } from "../core/hyper.ts";
 describe("h", () => {
   let h: HyperStatic<Node, Element>;
   beforeEach(() => {
-    let ctx = new DOMContext<Node, Element, Document>(new Document());
+    let ctx = new DOMContext<Node, Document>(new Document());
     h = hyperstatic(ctx);
   });
 

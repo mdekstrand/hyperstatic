@@ -8,11 +8,11 @@ function normalizeAttr(name: string): string {
   return name.replace(/(?<=.)[A-Z]/g, "-$&").toLowerCase();
 }
 
-export class HyperFactory<N, E extends N> {
-  context: HSContext<N, E>;
+export class HyperFactory<N> {
+  context: HSContext<N>;
   options: HyperOptions;
 
-  constructor(ctx: HSContext<N, E>, opts: HyperOptions) {
+  constructor(ctx: HSContext<N>, opts: HyperOptions) {
     this.context = ctx;
     this.options = Object.assign({
       normalizeAttrs: true,
@@ -23,7 +23,7 @@ export class HyperFactory<N, E extends N> {
     this.jsx = this.jsx.bind(this);
   }
 
-  appendChildren(elt: E, content?: HSNode<N>[]) {
+  appendChildren(elt: N, content?: HSNode<N>[]) {
     const ctx = this.context;
     content ??= [];
     let lstack = [];
@@ -55,11 +55,11 @@ export class HyperFactory<N, E extends N> {
   }
 
   create<T>(
-    name: string | symbol | Component<E, T>,
+    name: string | symbol | Component<N, T>,
     props?: JSXProps<N> | T,
-  ): { elt: E; final: boolean } {
+  ): { elt: N; final: boolean } {
     const ctx = this.context;
-    let elt: E | undefined;
+    let elt: N | undefined;
     if (name == ctx.Fragment) {
       elt = ctx.createFragment();
     } else if (typeof name == "string") {
@@ -88,7 +88,7 @@ export class HyperFactory<N, E extends N> {
   }
 
   jsx<T>(
-    name: string | symbol | Component<E, T>,
+    name: string | symbol | Component<N, T>,
     arg?: JSXProps<N> | T,
     _key?: unknown,
   ): N {

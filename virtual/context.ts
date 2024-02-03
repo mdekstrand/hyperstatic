@@ -5,7 +5,7 @@ import { HSContext, HSNode, HyperFragment } from "../core/defs.ts";
 import { isDOMNode } from "../core/dom.ts";
 import { isVDElement, VD_ELEMENT_TAG, VDElement, VDNode } from "./vdom.ts";
 
-export class VirtualContext implements HSContext<VDNode, VDElement> {
+export class VirtualContext implements HSContext<VDNode> {
   Fragment = HyperFragment;
 
   createElement(name: string): VDElement {

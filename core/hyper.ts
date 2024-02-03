@@ -4,15 +4,15 @@ import { parse } from "./spec.ts";
 export type { HyperStatic };
 
 export function hyperstatic<N, E extends N>(
-  ctx: HSContext<N, E>,
+  ctx: HSContext<N>,
   options?: HyperOptions,
 ): HyperStatic<N, E>;
 export function hyperstatic<N, E extends N>(
-  factory: HyperFactory<N, E>,
+  factory: HyperFactory<N>,
   options?: HyperOptions,
 ): HyperStatic<N, E>;
 export function hyperstatic<N, E extends N>(
-  cof: HSContext<N, E> | HyperFactory<N, E>,
+  cof: HSContext<N> | HyperFactory<N>,
   options?: HyperOptions,
 ): HyperStatic<N, E> {
   let factory = cof instanceof HyperFactory ? cof : new HyperFactory(cof, options ?? {});

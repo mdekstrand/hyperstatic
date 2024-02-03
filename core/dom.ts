@@ -7,27 +7,27 @@
  * hyperscript implementations to be generic over DOM implementations, but also type-safe
  * (a single instantiation limited to a single implementation).
  */
+import { assert } from "std/assert/assert.ts";
 import { HSContext, HyperFragment } from "./defs.ts";
 
 /**
  * Generic type for DOM documents.
  */
-export interface DOMDocument<N, E extends N> {
-  createElement(name: string): E;
+export interface DOMDocument<N extends DOMNode<N>> {
+  createElement(name: string): N & DOMElement<N>;
   createTextNode(text: string): N;
   importNode(node: N, deep?: boolean): N;
 }
 
-export interface DOMNode<N, E extends N> {
+export interface DOMNode<N extends DOMNode<N>> {
   nodeType: number;
   nodeName: string;
-  appendChild(node: N): DOMNode<N, E>;
-  ownerDocument: DOMDocument<N, E> | null;
+  appendChild(node: N): N;
+  ownerDocument: DOMDocument<N> | null;
 }
 
-export interface DOMElement<N, E extends N> extends DOMNode<N, E> {
+export interface DOMElement<N extends DOMNode<N>> extends DOMNode<N> {
   setAttribute(name: string, value: string): void;
-  append(...children: unknown[]): void;
   innerHTML: string;
 }
 
@@ -37,14 +37,17 @@ export function isDOMNode<N>(o: any): o is N {
   return o && o.nodeType && o.nodeName;
 }
 
+export function isDOMElement<N extends DOMNode<N>>(n: DOMNode<N>): n is DOMElement<N> {
+  return n.nodeType == 1;
+}
+
 /**
  * A HyperScript context that instantiates DOM nodes.
  */
 export class DOMContext<
-  N extends DOMNode<N, E>,
-  E extends DOMElement<N, E> & N,
-  D extends DOMDocument<N, E>,
-> implements HSContext<N, E> {
+  N extends DOMNode<N>,
+  D extends DOMDocument<N>,
+> implements HSContext<N> {
   document: D;
   Fragment = HyperFragment;
 
@@ -52,7 +55,7 @@ export class DOMContext<
     this.document = doc;
   }
 
-  createElement(name: string): E {
+  createElement(name: string): N & DOMElement<N> {
     return this.document.createElement(name);
   }
 
@@ -60,24 +63,26 @@ export class DOMContext<
     return this.document.createTextNode(text);
   }
 
-  createFragment(): E {
+  createFragment(): N {
     let tmpl = this.document.createElement("template");
     // @ts-ignore tmpl will be an HTMLTemplateElement with content
     return tmpl.content;
   }
 
-  setAttribute(node: E, name: string, value: string): void {
+  setAttribute(node: N, name: string, value: string): void {
+    assert(isDOMElement(node));
     node.setAttribute(name, value);
   }
 
-  appendChild(parent: E, child: N): void {
+  appendChild(parent: N, child: N): void {
     if (parent.ownerDocument && child.ownerDocument !== parent.ownerDocument) {
       child = parent.ownerDocument.importNode(child, true);
     }
     parent.appendChild(child);
   }
 
-  setInnerHTML(parent: E, html: string): void {
+  setInnerHTML(parent: N, html: string): void {
+    assert(isDOMElement(parent));
     parent.innerHTML = html;
   }
 
