@@ -3,13 +3,13 @@ import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Element, Node } from "deno-dom";
 
 import { DOMContext, isDOMElement } from "../core/dom.ts";
-import { HyperStatic } from "../core/defs.ts";
+import { HSContext, HyperStatic } from "../core/defs.ts";
 import { hyperstatic } from "../core/hyper.ts";
 
 describe("h", () => {
-  let h: HyperStatic<Node>;
+  let h: HyperStatic<Node, Element>;
   beforeEach(() => {
-    let ctx = new DOMContext<Node, Document>(new Document());
+    let ctx: HSContext<Node, Element> = new DOMContext<Node, Element, Document>(new Document());
     h = hyperstatic(ctx);
   });
 

@@ -8,7 +8,7 @@ import { VDElement, VDNode, VirtualContext } from "../virtual/mod.ts";
 import { renderDOM } from "../virtual/mod.ts";
 
 describe("h", () => {
-  let h: HyperStatic<VDNode>;
+  let h: HyperStatic<VDNode, VDElement>;
   let doc: Document;
   beforeEach(() => {
     let ctx = new VirtualContext();

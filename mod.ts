@@ -1,7 +1,7 @@
 import { HSAttrs, HSContext, HSNode, HyperStatic } from "./core/defs.ts";
 import { HyperFactory, HyperOptions } from "./core/factory.ts";
 import { hyperstatic as makeHyper } from "./core/hyper.ts";
-import { DOMContext, DOMDocument, DOMNode } from "./core/dom.ts";
+import { DOMContext, DOMDocument, DOMElement, DOMNode } from "./core/dom.ts";
 
 export type { HSAttrs, HSContext, HSNode, HyperOptions, HyperStatic };
 export { DOMContext, HyperFactory };
@@ -9,23 +9,24 @@ export { DOMContext, HyperFactory };
 /**
  * Construct a hyperstatic instance from a context, factory, or DOM document.
  */
-export function hyperstatic<N>(
-  ctx: HSContext<N>,
+export function hyperstatic<N, E extends N>(
+  ctx: HSContext<N, E>,
   options?: HyperOptions,
-): HyperStatic<N>;
-export function hyperstatic<N>(
-  factory: HyperFactory<N>,
+): HyperStatic<N, E>;
+export function hyperstatic<N, E extends N>(
+  factory: HyperFactory<N, E>,
   options?: HyperOptions,
-): HyperStatic<N>;
+): HyperStatic<N, E>;
 export function hyperstatic<
-  N extends DOMNode<N>,
-  D extends DOMDocument<N>,
->(doc: D): HyperStatic<N>;
-export function hyperstatic<N>(
+  N extends DOMNode<N, E>,
+  E extends N & DOMElement<N, E>,
+  D extends DOMDocument<N, E>,
+>(doc: D): HyperStatic<N, E>;
+export function hyperstatic<N, E extends N>(
   // deno-lint-ignore no-explicit-any
   cof: any,
   options?: HyperOptions,
-): HyperStatic<N> {
+): HyperStatic<N, E> {
   if (cof.nodeType && cof.nodeName) {
     cof = new DOMContext(cof);
   }

@@ -5,7 +5,7 @@ import { HSContext, HSNode, HyperFragment } from "../core/defs.ts";
 import { isDOMNode } from "../core/dom.ts";
 import { isVDElement, VD_ELEMENT_TAG, VDElement, VDNode } from "./vdom.ts";
 
-export class VirtualContext implements HSContext<VDNode> {
+export class VirtualContext implements HSContext<VDNode, VDElement> {
   Fragment = HyperFragment;
 
   createElement(name: string): VDElement {
@@ -44,5 +44,10 @@ export class VirtualContext implements HSContext<VDNode> {
   isNode(o: HSNode<VDNode>): o is VDNode {
     // deno-lint-ignore no-explicit-any
     return isVDElement(o as any) || isDOMNode(o) || typeof o == "string";
+  }
+
+  isElement(o: HSNode<VDNode>): o is VDElement {
+    // deno-lint-ignore no-explicit-any
+    return isVDElement(o as any);
   }
 }

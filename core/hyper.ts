@@ -4,17 +4,17 @@ import { parse } from "./spec.ts";
 export type { HyperStatic };
 
 export function hyperstatic<N, E extends N>(
-  ctx: HSContext<N>,
+  ctx: HSContext<N, E>,
   options?: HyperOptions,
-): HyperStatic<N>;
+): HyperStatic<N, E>;
 export function hyperstatic<N, E extends N>(
-  factory: HyperFactory<N>,
+  factory: HyperFactory<N, E>,
   options?: HyperOptions,
-): HyperStatic<N>;
+): HyperStatic<N, E>;
 export function hyperstatic<N, E extends N>(
-  cof: HSContext<N> | HyperFactory<N>,
+  cof: HSContext<N, E> | HyperFactory<N, E>,
   options?: HyperOptions,
-): HyperStatic<N> {
+): HyperStatic<N, E> {
   let factory = cof instanceof HyperFactory ? cof : new HyperFactory(cof, options ?? {});
   // deno-lint-ignore no-explicit-any
   function h(name: string, attrs: any, ...content: HSNode<N>[]) {

@@ -7,4 +7,4 @@ export { Document, DocumentFragment, Element, Node };
 /**
  * A {@link hyperstatic} instance using DenoDOM.
  */
-export const h = hyperstatic(new DOMContext<Node, Document>(new Document()));
+export const h = hyperstatic(new DOMContext<Node, Element, Document>(new Document()));

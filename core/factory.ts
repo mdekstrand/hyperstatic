@@ -1,3 +1,4 @@
+import { assert } from "std/assert/assert.ts";
 import { Component, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.ts";
 
 export type HyperOptions = {
@@ -8,11 +9,11 @@ function normalizeAttr(name: string): string {
   return name.replace(/(?<=.)[A-Z]/g, "-$&").toLowerCase();
 }
 
-export class HyperFactory<N> {
-  context: HSContext<N>;
+export class HyperFactory<N, E extends N> {
+  context: HSContext<N, E>;
   options: HyperOptions;
 
-  constructor(ctx: HSContext<N>, opts: HyperOptions) {
+  constructor(ctx: HSContext<N, E>, opts: HyperOptions) {
     this.context = ctx;
     this.options = Object.assign({
       normalizeAttrs: true,
@@ -78,10 +79,11 @@ export class HyperFactory<N> {
         name = normalizeAttr(name);
       }
       let val = (props as JSXProps<N>)[k];
+      assert(this.context.isElement(elt));
       if (val === true) {
-        ctx.setAttribute(elt!, name, "");
+        ctx.setAttribute(elt, name, "");
       } else if (val != null) {
-        ctx.setAttribute(elt!, name, val.toString());
+        ctx.setAttribute(elt, name, val.toString());
       }
     }
     return { elt: elt!, final: false };
@@ -97,6 +99,7 @@ export class HyperFactory<N> {
 
     let props = arg as JSXProps<N>;
     if (props?.dangerouslySetInnerHTML) {
+      assert(this.context.isElement(elt));
       this.context.setInnerHTML(elt, props.dangerouslySetInnerHTML);
     } else if (props?.children) {
       let children = Array.isArray(props.children) ? props.children : [props.children];
@@ -105,6 +108,16 @@ export class HyperFactory<N> {
     return elt;
   }
 
+  createElement(
+    name: string,
+    attrs?: HSAttrs,
+    ...content: HSNode<N>[]
+  ): E;
+  createElement(
+    name: symbol,
+    attrs?: HSAttrs,
+    ...content: HSNode<N>[]
+  ): N;
   createElement(
     name: string | symbol,
     attrs?: HSAttrs,

@@ -8,25 +8,26 @@
  * (a single instantiation limited to a single implementation).
  */
 import { assert } from "std/assert/assert.ts";
-import { HSContext, HyperFragment } from "./defs.ts";
+import { HSContext, HSNode, HyperFragment } from "./defs.ts";
 
 /**
  * Generic type for DOM documents.
  */
-export interface DOMDocument<N extends DOMNode<N>> {
-  createElement(name: string): N & DOMElement<N>;
+export interface DOMDocument<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>> {
+  createElement(name: string): E;
   createTextNode(text: string): N;
   importNode(node: N, deep?: boolean): N;
 }
 
-export interface DOMNode<N extends DOMNode<N>> {
+export interface DOMNode<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>> {
   nodeType: number;
   nodeName: string;
   appendChild(node: N): N;
-  ownerDocument: DOMDocument<N> | null;
+  ownerDocument: DOMDocument<N, E> | null;
 }
 
-export interface DOMElement<N extends DOMNode<N>> extends DOMNode<N> {
+export interface DOMElement<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>>
+  extends DOMNode<N, E> {
   id?: string;
   setAttribute(name: string, value: string): void;
   getAttribute(name: string): string | null;
@@ -39,7 +40,9 @@ export function isDOMNode<N>(o: any): o is N {
   return o && o.nodeType && o.nodeName;
 }
 
-export function isDOMElement<N extends DOMNode<N>>(n: DOMNode<N>): n is DOMElement<N> {
+export function isDOMElement<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>>(
+  n: DOMNode<N, E>,
+): n is DOMElement<N, E> {
   return n.nodeType == 1;
 }
 
@@ -47,9 +50,10 @@ export function isDOMElement<N extends DOMNode<N>>(n: DOMNode<N>): n is DOMEleme
  * A HyperScript context that instantiates DOM nodes.
  */
 export class DOMContext<
-  N extends DOMNode<N>,
-  D extends DOMDocument<N>,
-> implements HSContext<N> {
+  N extends DOMNode<N, E>,
+  E extends N & DOMNode<N, E> & DOMElement<N, E>,
+  D extends DOMDocument<N, E>,
+> implements HSContext<N, E> {
   document: D;
   Fragment = HyperFragment;
 
@@ -57,7 +61,7 @@ export class DOMContext<
     this.document = doc;
   }
 
-  createElement(name: string): N & DOMElement<N> {
+  createElement(name: string): E {
     return this.document.createElement(name);
   }
 
@@ -88,8 +92,11 @@ export class DOMContext<
     parent.innerHTML = html;
   }
 
-  // deno-lint-ignore no-explicit-any
-  isNode(o: any): o is N {
+  isNode(o: HSNode<N>): o is N {
     return isDOMNode(o);
+  }
+
+  isElement(o: HSNode<N>): o is E {
+    return this.isNode(o) && isDOMElement(o);
   }
 }
