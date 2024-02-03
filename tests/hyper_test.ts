@@ -1,13 +1,13 @@
-import { assertEquals } from "std/assert/mod.ts";
+import { assert, assertEquals } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Element, Node } from "deno-dom";
 
-import { DOMContext } from "../core/dom.ts";
+import { DOMContext, isDOMElement } from "../core/dom.ts";
 import { HyperStatic } from "../core/defs.ts";
 import { hyperstatic } from "../core/hyper.ts";
 
 describe("h", () => {
-  let h: HyperStatic<Node, Element>;
+  let h: HyperStatic<Node>;
   beforeEach(() => {
     let ctx = new DOMContext<Node, Document>(new Document());
     h = hyperstatic(ctx);
@@ -29,6 +29,7 @@ describe("h", () => {
 
   it("creates an element with attributes", () => {
     let elt = h("a", { id: "link", href: "https://example.com" });
+    assert(isDOMElement(elt));
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "A");
     assertEquals(elt.childNodes.length, 0);
@@ -38,6 +39,7 @@ describe("h", () => {
 
   it("creates an element with an ID and link", () => {
     let elt = h("a#link", { href: "https://example.com" });
+    assert(isDOMElement(elt));
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "A");
     assertEquals(elt.childNodes.length, 0);
@@ -46,7 +48,8 @@ describe("h", () => {
   });
 
   it("creates an element with a text child", () => {
-    let elt = h("span", "fish");
+    let elt = h("span", "fish") as Element;
+    assert(isDOMElement(elt));
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "SPAN");
     // the text is right
@@ -61,7 +64,8 @@ describe("h", () => {
         h("li", h("a", { href: "/" }, "Home")),
         h("li", h("a", { href: "/search" }, "Search")),
       ]),
-    ]);
+    ]) as Element;
+    assert(isDOMElement(elt));
     assertEquals(elt.nodeName, "NAV");
     assertEquals(elt.classList[0], "top");
     assertEquals(elt.children[0].nodeName, "UL");

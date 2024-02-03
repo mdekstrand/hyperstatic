@@ -27,7 +27,9 @@ export interface DOMNode<N extends DOMNode<N>> {
 }
 
 export interface DOMElement<N extends DOMNode<N>> extends DOMNode<N> {
+  id?: string;
   setAttribute(name: string, value: string): void;
+  getAttribute(name: string): string | null;
   innerHTML: string;
 }
 

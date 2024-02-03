@@ -22,11 +22,13 @@ import { fail } from "std/assert/fail.ts";
 export function render<
   N extends DOMNode<N>,
   D extends DOMDocument<N>,
->(vnode: VDNode, doc: D, parent?: N): N {
+>(vnode: VDNode, doc: D, parent?: N): N | null {
   let node;
   let append = parent !== undefined;
   let children: VDNode[] = [];
-  if (typeof vnode == "string") {
+  if (vnode == null) {
+    return null;
+  } else if (typeof vnode == "string") {
     node = doc.createTextNode(vnode);
   } else if (isVDElement(vnode)) {
     if (vnode.name) {

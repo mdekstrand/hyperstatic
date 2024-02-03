@@ -6,15 +6,15 @@ export type { HyperStatic };
 export function hyperstatic<N, E extends N>(
   ctx: HSContext<N>,
   options?: HyperOptions,
-): HyperStatic<N, E>;
+): HyperStatic<N>;
 export function hyperstatic<N, E extends N>(
   factory: HyperFactory<N>,
   options?: HyperOptions,
-): HyperStatic<N, E>;
+): HyperStatic<N>;
 export function hyperstatic<N, E extends N>(
   cof: HSContext<N> | HyperFactory<N>,
   options?: HyperOptions,
-): HyperStatic<N, E> {
+): HyperStatic<N> {
   let factory = cof instanceof HyperFactory ? cof : new HyperFactory(cof, options ?? {});
   // deno-lint-ignore no-explicit-any
   function h(name: string, attrs: any, ...content: HSNode<N>[]) {

@@ -5,7 +5,7 @@ import { Document, DOMImplementation, Element, Node } from "xmldom";
 import { HyperStatic, hyperstatic } from "../mod.ts";
 
 describe("xml basic dom", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Node>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument();
@@ -20,7 +20,7 @@ describe("xml basic dom", () => {
 });
 
 describe("xml namespaced dom", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Node>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument("https://xml.ekstrandom.net/example", "root");
@@ -35,7 +35,7 @@ describe("xml namespaced dom", () => {
 });
 
 describe("unnormalized attributes", () => {
-  let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
+  let impl: DOMImplementation, document: Document, x: HyperStatic<Node>;
   beforeEach(() => {
     impl = new DOMImplementation();
     document = impl.createDocument();

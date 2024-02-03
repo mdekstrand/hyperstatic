@@ -1,4 +1,4 @@
-import { assertEquals } from "std/assert/mod.ts";
+import { assert, assertEquals } from "std/assert/mod.ts";
 import { beforeEach, describe, it } from "std/testing/bdd.ts";
 import { Document, Element, Node } from "deno-dom";
 
@@ -8,7 +8,7 @@ import { VDElement, VDNode, VirtualContext } from "../virtual/mod.ts";
 import { renderDOM } from "../virtual/mod.ts";
 
 describe("h", () => {
-  let h: HyperStatic<VDNode, VDElement>;
+  let h: HyperStatic<VDNode>;
   let doc: Document;
   beforeEach(() => {
     let ctx = new VirtualContext();
@@ -17,21 +17,21 @@ describe("h", () => {
   });
 
   it("creates an empty element", () => {
-    let elt = renderDOM(h("div"), doc);
+    let elt: any = renderDOM(h("div"), doc);
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "DIV");
     assertEquals(elt.childNodes.length, 0);
   });
 
   it("ignores null", () => {
-    let elt = renderDOM(h("div", {}, null), doc);
+    let elt: any = renderDOM(h("div", {}, null), doc);
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "DIV");
     assertEquals(elt.childNodes.length, 0);
   });
 
   it("creates an element with attributes", () => {
-    let elt = renderDOM(h("a", { id: "link", href: "https://example.com" }), doc);
+    let elt: any = renderDOM(h("a", { id: "link", href: "https://example.com" }), doc);
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "A");
     assertEquals(elt.childNodes.length, 0);
@@ -40,7 +40,7 @@ describe("h", () => {
   });
 
   it("creates an element with an ID and link", () => {
-    let elt = renderDOM(h("a#link", { href: "https://example.com" }), doc);
+    let elt: any = renderDOM(h("a#link", { href: "https://example.com" }), doc);
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "A");
     assertEquals(elt.childNodes.length, 0);
@@ -49,7 +49,7 @@ describe("h", () => {
   });
 
   it("creates an element with a text child", () => {
-    let elt = renderDOM(h("span", "fish"), doc);
+    let elt: any = renderDOM(h("span", "fish"), doc);
     assertEquals(elt.nodeType, Node.ELEMENT_NODE);
     assertEquals(elt.nodeName, "SPAN");
     // the text is right
@@ -59,7 +59,7 @@ describe("h", () => {
   });
 
   it("creates nested with classes", () => {
-    let elt = renderDOM(
+    let elt: any = renderDOM(
       h("nav.top", [
         h("ul", [
           h("li", h("a", { href: "/" }, "Home")),

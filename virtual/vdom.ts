@@ -19,5 +19,5 @@ export interface VDElement {
 export type VDNode = VDElement | string | DNode;
 
 export function isVDElement(obj: VDNode): obj is VDElement {
-  return Object.prototype.hasOwnProperty.call(obj, VD_ELEMENT_TAG);
+  return obj != null && Object.prototype.hasOwnProperty.call(obj, VD_ELEMENT_TAG);
 }

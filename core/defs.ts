@@ -35,14 +35,14 @@ export type JSXProps<N> = HSAttrs & {
   children?: HSNode<N>[];
 };
 
-export interface HyperStatic<N, E extends N> {
-  (spec: string, ...children: HSNode<N>[]): E;
-  (spec: string, attrs: HSAttrs, ...children: HSNode<N>[]): E;
+export interface HyperStatic<N> {
+  (spec: string, ...children: HSNode<N>[]): N;
+  (spec: string, attrs: HSAttrs, ...children: HSNode<N>[]): N;
 
   Fragment: symbol;
   createElement(spec: string | symbol, attrs?: HSAttrs, ...children: HSNode<N>[]): N;
 
   jsx(name: string | symbol, props?: JSXProps<N>, key?: unknown): N;
-  jsx<T>(comp: Component<E, T>, props: T, key?: unknown): N;
+  jsx<T>(comp: Component<N, T>, props: T, key?: unknown): N;
   jsxs(name: string | symbol, props?: JSXProps<N>, key?: unknown): N;
 }
