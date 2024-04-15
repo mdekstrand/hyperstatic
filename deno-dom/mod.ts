@@ -11,4 +11,6 @@ export type DDContext = DOMContext<Node, Element, Document>;
 /**
  * A {@link hyperstatic} instance using DenoDOM.
  */
-export const h = hyperstatic(new DOMContext<Node, Element, Document>(new Document()));
+export const h: HyperStatic<Node, Element> = hyperstatic<Node, Element>(
+  new DOMContext<Node, Element, Document>(new Document()),
+);
