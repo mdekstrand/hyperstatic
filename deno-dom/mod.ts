@@ -1,4 +1,4 @@
-import { Document, DocumentFragment, Element, Node } from "deno-dom";
+import { Document, DocumentFragment, Element, Node } from "@b-fuze/deno-dom";
 import { HyperStatic } from "../core/defs.ts";
 import { hyperstatic } from "../core/hyper.ts";
 import { DOMContext } from "../core/dom.ts";

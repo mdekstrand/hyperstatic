@@ -1,6 +1,7 @@
-import { assertEquals } from "std/assert/mod.ts";
-import { beforeEach, describe, it } from "std/testing/bdd.ts";
-import { Document, DOMImplementation, Element, Node } from "xmldom";
+/// <reference lib="dom" />
+import { assertEquals } from "@std/assert";
+import { beforeEach, describe, it } from "@std/testing/bdd";
+import { DOMImplementation } from "@xmldom/xmldom";
 
 import { HyperStatic, hyperstatic } from "../mod.ts";
 
@@ -8,7 +9,7 @@ describe("xml basic dom", () => {
   let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
   beforeEach(() => {
     impl = new DOMImplementation();
-    document = impl.createDocument();
+    document = impl.createDocument(null, null);
     x = hyperstatic(document);
   });
 
@@ -38,7 +39,7 @@ describe("unnormalized attributes", () => {
   let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;
   beforeEach(() => {
     impl = new DOMImplementation();
-    document = impl.createDocument();
+    document = impl.createDocument(null, null);
     x = hyperstatic(document, { normalizeAttrs: false });
   });
 

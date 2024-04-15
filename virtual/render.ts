@@ -4,7 +4,7 @@
 
 import { isVDElement, VDNode } from "./vdom.ts";
 import { DOMDocument, DOMElement, DOMNode, isDOMNode } from "../core/dom.ts";
-import { fail } from "std/assert/fail.ts";
+import { fail } from "@std/assert/fail";
 
 /**
  * Render a VDOM node to a DOM node in a particular document.

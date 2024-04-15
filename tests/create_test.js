@@ -1,6 +1,6 @@
-import { assertArrayIncludes, assertEquals, assertFalse } from "std/assert/mod.ts";
-import { beforeEach, describe, it } from "std/testing/bdd.ts";
-import { Document, Node } from "deno-dom";
+import { assertArrayIncludes, assertEquals, assertFalse } from "@std/assert";
+import { beforeEach, describe, it } from "@std/testing/bdd";
+import { Document, Node } from "@b-fuze/deno-dom";
 
 import { hyperstatic } from "../mod.ts";
 

@@ -1,6 +1,6 @@
-import { assert, assertEquals } from "std/assert/mod.ts";
-import { beforeEach, describe, it } from "std/testing/bdd.ts";
-import { Document, Element, Node } from "deno-dom";
+import { assert, assertEquals } from "@std/assert";
+import { beforeEach, describe, it } from "@std/testing/bdd";
+import { Document, Element, Node } from "@b-fuze/deno-dom";
 
 import { DOMContext, isDOMElement } from "../core/dom.ts";
 import { HSContext, HyperStatic } from "../core/defs.ts";

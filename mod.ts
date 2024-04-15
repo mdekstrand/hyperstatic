@@ -24,7 +24,7 @@ export function hyperstatic<
   N extends DOMNode<N, E>,
   E extends N & DOMElement<N, E>,
   D extends DOMDocument<N, E>,
->(doc: D): HyperStatic<N, E>;
+>(doc: D, options?: HyperOptions): HyperStatic<N, E>;
 export function hyperstatic<N, E extends N>(
   // deno-lint-ignore no-explicit-any
   cof: any,

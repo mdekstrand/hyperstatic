@@ -1,7 +1,7 @@
 import { React } from "./dft-react.ts";
-import { assertEquals, assertInstanceOf } from "std/assert/mod.ts";
-import { beforeEach, describe, it } from "std/testing/bdd.ts";
-import { Document, DocumentFragment, Element, Node } from "deno-dom";
+import { assertEquals, assertInstanceOf } from "@std/assert";
+import { beforeEach, describe, it } from "@std/testing/bdd";
+import { Document, DocumentFragment, Element, Node } from "@b-fuze/deno-dom";
 
 describe("classic JSX", () => {
   it("creates an empty element", () => {

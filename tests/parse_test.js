@@ -1,5 +1,5 @@
-import { assertEquals, assertFalse, assertStrictEquals } from "std/assert/mod.ts";
-import { describe, it } from "std/testing/bdd.ts";
+import { assertEquals, assertFalse, assertStrictEquals } from "@std/assert";
+import { describe, it } from "@std/testing/bdd";
 import { parse } from "../core/spec.ts";
 
 describe("spec parser", () => {

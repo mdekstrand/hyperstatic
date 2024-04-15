@@ -7,7 +7,7 @@
  * hyperscript implementations to be generic over DOM implementations, but also type-safe
  * (a single instantiation limited to a single implementation).
  */
-import { assert } from "std/assert/assert.ts";
+import { assert } from "@std/assert/assert";
 import { HSContext, HSNode, HyperFragment } from "./defs.ts";
 
 /**

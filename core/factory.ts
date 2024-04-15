@@ -1,4 +1,4 @@
-import { assert } from "std/assert/assert.ts";
+import { assert } from "@std/assert/assert";
 import { Component, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.ts";
 
 export type HyperOptions = {

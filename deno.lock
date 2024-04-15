@@ -1,5 +1,37 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@b-fuze/deno-dom@^0.1.43": "jsr:@b-fuze/deno-dom@0.1.43",
+      "jsr:@std/assert@^0.222.1": "jsr:@std/assert@0.222.1",
+      "jsr:@std/fmt@^0.222.1": "jsr:@std/fmt@0.222.1",
+      "jsr:@std/testing@^0.222.1": "jsr:@std/testing@0.222.1",
+      "npm:@xmldom/xmldom@^0.8.10": "npm:@xmldom/xmldom@0.8.10"
+    },
+    "jsr": {
+      "@b-fuze/deno-dom@0.1.43": {
+        "integrity": "6e99c4645ab897520fa04d60d0096aa1f49ff9a8950db7f258511419ab08d754"
+      },
+      "@std/assert@0.222.1": {
+        "integrity": "691637161ee584a9919d1f9950ddd1272feb8e0a19e83aa5b7563cedaf73d74c",
+        "dependencies": [
+          "jsr:@std/fmt@^0.222.1"
+        ]
+      },
+      "@std/fmt@0.222.1": {
+        "integrity": "ec3382f9b0261c1ab1a5c804aa355d816515fa984cdd827ed32edfb187c0a722"
+      },
+      "@std/testing@0.222.1": {
+        "integrity": "7be5c3ef185d31883116824a2dd604eb6f12a56fd5ed80489c7c696b2a76c5bc"
+      }
+    },
+    "npm": {
+      "@xmldom/xmldom@0.8.10": {
+        "integrity": "sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==",
+        "dependencies": {}
+      }
+    }
+  },
   "remote": {
     "https://deno.land/std@0.190.0/fmt/colors.ts": "d67e3cd9f472535241a8e410d33423980bec45047e343577554d3356e1f0ef4e",
     "https://deno.land/std@0.190.0/testing/_diff.ts": "1a3c044aedf77647d6cac86b798c6417603361b66b54c53331b312caeb447aea",
@@ -93,5 +125,13 @@
     "https://esm.sh/v122/@xmldom/xmldom@0.8.8/denonext/xmldom.mjs": "4548c538a7b13303d95bcd26b92a04644802f7ea9c59c61b1cc1505a80904708",
     "https://esm.sh/v122/@xmldom/xmldom@0.8.8/index.d.ts": "f6c19634ce810470c7a1c25a97e182232c2a10afc27db72e836b594f3e69e419",
     "https://esm.sh/v122/@xmldom/xmldom@v0.8.8": "1771887e7d287c37bd28d9d79014240e47039d0aed33b7ed8d392f3c72d44a16"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@b-fuze/deno-dom@^0.1.43",
+      "jsr:@std/assert@^0.222.1",
+      "jsr:@std/testing@^0.222.1",
+      "npm:@xmldom/xmldom@^0.8.10"
+    ]
   }
 }
