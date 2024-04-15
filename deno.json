@@ -10,6 +10,13 @@
     "hyperdeno": "./deno-dom/mod.ts",
     "hyperdeno/jsx-runtime": "./deno-dom/jsx-runtime.ts"
   },
+  "exports": {
+    ".": "./mod.ts",
+    "./deno-dom": "./deno-dom/mod.ts",
+    "./deno-dom/jsx-runtime": "./deno-dom/jsx-runtime.ts",
+    "./browser": "./browser/mod.ts",
+    "./browser/jsx-runtime": "./browser/jsx-runtime.ts"
+  },
   "lint": {
     "rules": {
       "tags": ["recommended"],
