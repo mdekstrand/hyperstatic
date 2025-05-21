@@ -3,7 +3,7 @@ import { beforeEach, describe, it } from "@std/testing/bdd";
 import { Document, Element, Node } from "@b-fuze/deno-dom";
 
 import { HyperStatic } from "../core/defs.ts";
-import { hyperstatic } from "../core/hyper.ts";
+import { makeHyper } from "../core/hyper.ts";
 import { VDElement, VDNode, VirtualContext } from "../virtual/mod.ts";
 import { renderDOM } from "../virtual/mod.ts";
 
@@ -12,7 +12,7 @@ describe("h", () => {
   let doc: Document;
   beforeEach(() => {
     let ctx = new VirtualContext();
-    h = hyperstatic(ctx);
+    h = makeHyper(ctx);
     doc = new Document();
   });
 

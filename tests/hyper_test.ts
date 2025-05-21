@@ -4,13 +4,13 @@ import { Document, Element, Node } from "@b-fuze/deno-dom";
 
 import { DOMContext, isDOMElement } from "../core/dom.ts";
 import { HSContext, HyperStatic } from "../core/defs.ts";
-import { hyperstatic } from "../core/hyper.ts";
+import { makeHyper } from "../core/hyper.ts";
 
 describe("h", () => {
   let h: HyperStatic<Node, Element>;
   beforeEach(() => {
     let ctx: HSContext<Node, Element> = new DOMContext<Node, Element, Document>(new Document());
-    h = hyperstatic(ctx);
+    h = makeHyper(ctx);
   });
 
   it("creates an empty element", () => {

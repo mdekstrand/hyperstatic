@@ -3,15 +3,15 @@ import { HyperFactory, HyperOptions } from "./factory.ts";
 import { parse } from "./spec.ts";
 export type { HyperStatic };
 
-export function hyperstatic<N, E extends N>(
+export function makeHyper<N, E extends N>(
   ctx: HSContext<N, E>,
   options?: HyperOptions,
 ): HyperStatic<N, E>;
-export function hyperstatic<N, E extends N>(
+export function makeHyper<N, E extends N>(
   factory: HyperFactory<N, E>,
   options?: HyperOptions,
 ): HyperStatic<N, E>;
-export function hyperstatic<N, E extends N>(
+export function makeHyper<N, E extends N>(
   cof: HSContext<N, E> | HyperFactory<N, E>,
   options?: HyperOptions,
 ): HyperStatic<N, E> {

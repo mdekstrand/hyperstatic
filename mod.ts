@@ -1,6 +1,6 @@
 import { HSAttrs, HSContext, HSNode, HyperStatic } from "./core/defs.ts";
 import { HyperFactory, HyperOptions } from "./core/factory.ts";
-import { hyperstatic as makeHyper } from "./core/hyper.ts";
+import { makeHyper } from "./core/hyper.ts";
 import { DOMContext, DOMDocument, DOMElement, DOMNode } from "./core/dom.ts";
 
 export type { HSAttrs, HSContext, HSNode, HyperOptions, HyperStatic };
