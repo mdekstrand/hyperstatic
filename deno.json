@@ -1,6 +1,6 @@
 {
   "name": "@mdekstrand/hyperstatic",
-  "version": "0.6.0-beta3",
+  "version": "0.6.0-beta1",
   "imports": {
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.49",
     "@std/assert": "jsr:@std/assert@^1.0.13",
