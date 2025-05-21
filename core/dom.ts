@@ -8,7 +8,7 @@
  * (a single instantiation limited to a single implementation).
  */
 import { assert } from "@std/assert/assert";
-import { HSContext, HSNode, HyperFragment } from "./defs.ts";
+import { HSContext, HSNode } from "./defs.ts";
 
 /**
  * Generic type for DOM documents.
