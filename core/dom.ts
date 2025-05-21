@@ -31,7 +31,7 @@ export interface DOMElement<N extends DOMNode<N, E>, E extends N & DOMElement<N,
   id?: string;
   setAttribute(name: string, value: string): void;
   getAttribute(name: string): string | null;
-  innerHTML: string;
+  innerHTML?: string;
 }
 
 // deno-lint-ignore no-explicit-any

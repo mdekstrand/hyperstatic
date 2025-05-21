@@ -1,7 +1,7 @@
 /// <reference lib="dom" />
 import { assertEquals } from "@std/assert";
 import { beforeEach, describe, it } from "@std/testing/bdd";
-import { Document, DOMImplementation } from "@xmldom/xmldom";
+import { Document, DOMImplementation, Element, Node } from "@xmldom/xmldom";
 
 import { HyperStatic, hyperstatic } from "../mod.ts";
 
