@@ -51,7 +51,7 @@ in `deno.json`:
 ```json
 {
     "imports": {
-        "@mdekstrand/hyperstatic": "@mdekstrand/hyperstatic@^0.5"
+        "@mdekstrand/hyperstatic": "@mdekstrand/hyperstatic@^0.6"
     },
     "compilerOptions": {
         "jsx": "react-jsx",
