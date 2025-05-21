@@ -40,7 +40,7 @@ export interface HyperStatic<N, E extends N> {
   (spec: string, ...children: HSNode<N>[]): E;
   (spec: string, attrs: HSAttrs, ...children: HSNode<N>[]): E;
 
-  Fragment: symbol;
+  Fragment(): symbol;
   createElement(spec: string, attrs?: HSAttrs, ...children: HSNode<N>[]): E;
   createElement(spec: symbol, attrs?: HSAttrs, ...children: HSNode<N>[]): N;
 

@@ -46,7 +46,7 @@ export function hyperstatic<N, E extends N>(
     return factory.createElement(spec.name, attrs, ...content) as any;
   }
 
-  h.Fragment = factory.context.Fragment;
+  h.Fragment = () => factory.context.Fragment;
   h.createElement = factory.createElement;
   h.jsx = factory.jsx;
   h.jsxs = factory.jsx;
