@@ -1,6 +1,6 @@
 {
   "name": "@mdekstrand/hyperstatic",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "imports": {
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.43",
     "@std/assert": "jsr:@std/assert@^0.222.1",
@@ -12,6 +12,7 @@
   },
   "exports": {
     ".": "./mod.ts",
+    "./virtual": "./virtual/mod.ts",
     "./deno-dom": "./deno-dom/mod.ts",
     "./deno-dom/jsx-runtime": "./deno-dom/jsx-runtime.ts",
     "./browser": "./browser/mod.ts",

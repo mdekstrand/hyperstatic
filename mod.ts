@@ -6,9 +6,6 @@ import { DOMContext, DOMDocument, DOMElement, DOMNode } from "./core/dom.ts";
 export type { HSAttrs, HSContext, HSNode, HyperOptions, HyperStatic };
 export { DOMContext, HyperFactory };
 
-export type { VDElement, VDNode } from "./virtual/vdom.ts";
-export { render as renderVDom } from "./virtual/render.ts";
-
 /**
  * Construct a hyperstatic instance from a context, factory, or DOM document.
  */
