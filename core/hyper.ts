@@ -46,10 +46,21 @@ export function makeHyper<N, E extends N>(
     return factory.createElement(spec.name, attrs, ...content) as any;
   }
 
-  h.Fragment = () => factory.context.Fragment;
-  h.createElement = factory.createElement;
-  h.jsx = factory.jsx;
-  h.jsxs = factory.jsx;
+  function HyperFragment(
+    this: HyperFactory<N, E>,
+    { children }: { children?: HSNode<N>[] },
+  ): N {
+    let frag = this.context.createFragment();
+    if (children != null) {
+      this.appendChildren(frag, children);
+    }
+    return frag;
+  }
+
+  h.Fragment = HyperFragment.bind(factory);
+  h.createElement = factory.createElement.bind(factory);
+  h.jsx = factory.jsx.bind(factory);
+  h.jsxs = factory.jsx.bind(factory);
 
   return h;
 }

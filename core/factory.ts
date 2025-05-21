@@ -1,5 +1,5 @@
 import { assert } from "@std/assert/assert";
-import { Component, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.ts";
+import { Component, FragmentSymbol, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.ts";
 
 export type HyperOptions = {
   normalizeAttrs?: boolean;
@@ -61,7 +61,7 @@ export class HyperFactory<N, E extends N> {
   ): { elt: N; final: boolean } {
     const ctx = this.context;
     let elt: N | undefined;
-    if (name == ctx.Fragment) {
+    if (name == FragmentSymbol) {
       elt = ctx.createFragment();
     } else if (typeof name == "string") {
       elt = ctx.createElement(name);

@@ -13,12 +13,12 @@ export type HSIgnore = undefined | null | boolean;
 
 export type HSNode<N> = N | HSText | HSIgnore | HSNode<N>[];
 
+export const FragmentSymbol = Symbol.for("hyperstatic.Fragment");
+
 /**
  * Context for a HyperStatic implementation.
  */
 export interface HSContext<Node, Element extends Node> {
-  Fragment: symbol;
-
   createElement(name: string): Element;
   createTextNode(text: string): Node;
   createFragment(): Node;
@@ -40,7 +40,7 @@ export interface HyperStatic<N, E extends N> {
   (spec: string, ...children: HSNode<N>[]): E;
   (spec: string, attrs: HSAttrs, ...children: HSNode<N>[]): E;
 
-  Fragment(): symbol;
+  Fragment(props: { children?: HSNode<N>[] }): N;
   createElement(spec: string, attrs?: HSAttrs, ...children: HSNode<N>[]): E;
   createElement(spec: symbol, attrs?: HSAttrs, ...children: HSNode<N>[]): N;
 

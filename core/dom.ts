@@ -19,6 +19,9 @@ export interface DOMDocument<N extends DOMNode<N, E>, E extends N & DOMElement<N
   importNode(node: N, deep?: boolean): N;
 }
 
+/**
+ * Generic type for DOM nodes.
+ */
 export interface DOMNode<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>> {
   nodeType: number;
   nodeName: string;
@@ -26,6 +29,9 @@ export interface DOMNode<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>
   ownerDocument: DOMDocument<N, E> | null;
 }
 
+/**
+ * Generic type for DOM elements.
+ */
 export interface DOMElement<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>>
   extends DOMNode<N, E> {
   id?: string;
@@ -55,7 +61,6 @@ export class DOMContext<
   D extends DOMDocument<N, E>,
 > implements HSContext<N, E> {
   document: D;
-  Fragment = HyperFragment;
 
   constructor(doc: D) {
     this.document = doc;
