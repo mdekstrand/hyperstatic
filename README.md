@@ -24,6 +24,18 @@ import { h } from 'jsr:@mdekstrand/hyperstatic';
 let elt = h('a.link', {href: 'https://example.com'}, 'Example');
 ```
 
+If you use `esbuild` with [`esbuild-module-loader`][esb-deno], you can specify the following
+options to transpile JSX to Hyperstatic-based DOM manipulations for the browser:
+
+```javascript
+{
+    jsx: "automatic",
+    jsxImportSource: "@mdekstrand/hyperstatic/browser",
+}
+```
+
+[esb-deno]: https://jsr/@luca/esbuild-deno-loader
+
 ## Deno and deno_dom
 
 To use in Deno:
