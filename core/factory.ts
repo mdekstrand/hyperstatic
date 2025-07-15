@@ -72,7 +72,7 @@ export class HyperFactory<N, E extends N> {
     }
 
     props ??= {};
-    for (let k in props) {
+    for (let k of Object.keys(props)) {
       if (k == "children" || k == "dangerouslySetInnerHTML") continue;
       let name = k;
       if (this.options.normalizeAttrs) {

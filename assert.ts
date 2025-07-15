@@ -3,7 +3,7 @@
  * @module
  */
 
-export function assert(condition: boolean, message?: string): void {
+export function assert(condition: boolean, message?: string): asserts condition {
   if (!condition) {
     fail(message);
   }
