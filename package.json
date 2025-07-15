@@ -44,5 +44,10 @@
     "jsdom": {
       "optional": true
     }
-  }
+  },
+  "files": [
+    "README.md",
+    "package.json",
+    "dist/"
+  ]
 }
