@@ -32,7 +32,16 @@
     "dprint": "^0.50.1",
     "typescript": "^5.8.3"
   },
-  "optionalDependencies": {
-    "@xmldom/xmldom": "^0.9.8"
+  "peerDependencies": {
+    "@xmldom/xmldom": "^0.9.8",
+    "jsdom": "^26.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@xmldom/xmldom": {
+      "optional": true
+    },
+    "jsdom": {
+      "optional": true
+    }
   }
 }
