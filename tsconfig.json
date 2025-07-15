@@ -13,7 +13,7 @@
     "**/*.ts"
   ],
   "exclude": [
-    "jsdom/*.ts",
+    "deno-dom/*.ts",
     "dist/**"
   ]
 }
