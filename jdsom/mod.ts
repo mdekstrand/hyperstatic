@@ -9,9 +9,13 @@ import { makeHyper } from "../core/hyper.js";
 export type JSDHyperStatic = HyperStatic<Node, Element>;
 export type JSDContext = DOMContext<Node, Element, Document>;
 
+export function makeHyperJS(): HyperStatic<Node, Element> {
+  return makeHyper<Node, Element>(
+    new DOMContext<Node, Element, Document>(new JSDOM("").window.document),
+  );
+}
+
 /**
  * A {@link makeHyper} instance using DenoDOM.
  */
-export const h: HyperStatic<Node, Element> = makeHyper<Node, Element>(
-  new DOMContext<Node, Element, Document>(new JSDOM("").window.document),
-);
+export const h: HyperStatic<Node, Element> = makeHyperJS();

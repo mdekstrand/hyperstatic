@@ -31,7 +31,9 @@
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
+    "@types/mocha": "^10.0.10",
     "dprint": "^0.50.1",
+    "mocha": "^11.7.1",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
