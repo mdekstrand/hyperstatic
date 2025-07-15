@@ -2,13 +2,13 @@
  * Hyperstatic with a virtual DOM.  Much like Hastscript, but interoperates with
  * DOM trees.
  */
-import { VirtualContext } from "./context.ts";
+import { VirtualContext } from "./context.js";
 export { VirtualContext };
-export type { VDElement, VDNode } from "./vdom.ts";
-export { render as renderDOM } from "./render.ts";
-import { makeHyper } from "../core/hyper.ts";
-import { HyperStatic } from "../core/defs.ts";
-import { VDElement, VDNode } from "./vdom.ts";
+export type { VDElement, VDNode } from "./vdom.js";
+export { render as renderDOM } from "./render.js";
+import { makeHyper } from "../core/hyper.js";
+import { HyperStatic } from "../core/defs.js";
+import { VDElement, VDNode } from "./vdom.js";
 
 /**
  * A {@link hyperstatic} using the virtual DOM.

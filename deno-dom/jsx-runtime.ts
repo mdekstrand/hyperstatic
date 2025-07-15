@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-namespace
-import { h } from "./mod.ts";
+import { h } from "./mod.js";
 
 export const jsx = h.jsx;
 export const jsxs = h.jsxs;

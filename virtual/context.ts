@@ -1,9 +1,9 @@
 /**
  * VDom context.
  */
-import { HSContext, HSNode, HyperFragment } from "../core/defs.ts";
-import { isDOMNode } from "../core/dom.ts";
-import { isVDElement, VD_ELEMENT_TAG, VDElement, VDNode } from "./vdom.ts";
+import { HSContext, HSNode, HyperFragment } from "../core/defs.js";
+import { isDOMNode } from "../core/dom.js";
+import { isVDElement, VD_ELEMENT_TAG, VDElement, VDNode } from "./vdom.js";
 
 export class VirtualContext implements HSContext<VDNode, VDElement> {
   Fragment = HyperFragment;

@@ -198,6 +198,11 @@
       "jsr:@std/assert@^1.0.13",
       "jsr:@std/testing@^1.0.12",
       "npm:@xmldom/xmldom@~0.9.8"
-    ]
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:typescript@^5.8.3"
+      ]
+    }
   }
 }

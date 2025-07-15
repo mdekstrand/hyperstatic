@@ -1,7 +1,7 @@
 import { Document, DocumentFragment, Element, Node } from "@b-fuze/deno-dom";
-import { HyperStatic } from "../core/defs.ts";
-import { makeHyper } from "../core/hyper.ts";
-import { DOMContext } from "../core/dom.ts";
+import { HyperStatic } from "../core/defs.js";
+import { makeHyper } from "../core/hyper.js";
+import { DOMContext } from "../core/dom.js";
 
 export { Document, DocumentFragment, Element, Node };
 

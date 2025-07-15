@@ -1,0 +1,38 @@
+{
+  "name": "@mdekstrand/hyperstatic",
+  "version": "0.7.0",
+  "description": "Static JSX/HyperScript implementation on top of the DOM",
+  "homepage": "https://github.com/mdekstrand/hyperstatic#readme",
+  "bugs": {
+    "url": "https://github.com/mdekstrand/hyperstatic/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdekstrand/hyperstatic.git"
+  },
+  "license": "MIT",
+  "author": "Michael Ekstrand <md@ekstrandom.net>",
+  "type": "module",
+  "module": "dist/mod.js",
+  "exports": {
+    ".": "./dist/mod.js",
+    "./virtual": "./dist/virtual/mod.js",
+    "./deno-dom": "./dist/deno-dom/mod.js",
+    "./deno-dom/jsx-runtime": "./dist/deno-dom/jsx-runtime.js",
+    "./browser": "./dist/browser/mod.js",
+    "./browser/jsx-runtime": "./dist/browser/jsx-runtime.js"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "dprint": "^0.50.1",
+    "typescript": "^5.8.3"
+  },
+  "optionalDependencies": {
+    "@xmldom/xmldom": "^0.9.8"
+  }
+}

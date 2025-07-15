@@ -1,5 +1,5 @@
-import { assert } from "@std/assert/assert";
-import { Component, FragmentSymbol, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.ts";
+import { assert } from "../assert.js";
+import { Component, FragmentSymbol, HSAttrs, HSContext, HSNode, JSXProps } from "./defs.js";
 
 export type HyperOptions = {
   normalizeAttrs?: boolean;

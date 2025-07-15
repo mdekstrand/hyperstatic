@@ -1,6 +1,6 @@
 // deno-lint-ignore-file no-window
-import { DOMContext } from "../core/dom.ts";
-import { HyperStatic, makeHyper } from "../core/hyper.ts";
+import { DOMContext } from "../core/dom.js";
+import { HyperStatic, makeHyper } from "../core/hyper.js";
 
 /**
  * Default HyperStatic implementation using the document from the global `window` object.

@@ -2,9 +2,9 @@ import { assert, assertEquals } from "@std/assert";
 import { beforeEach, describe, it } from "@std/testing/bdd";
 import { Document, Element, Node } from "@b-fuze/deno-dom";
 
-import { DOMContext, isDOMElement } from "../core/dom.ts";
-import { HSContext, HyperStatic } from "../core/defs.ts";
-import { makeHyper } from "../core/hyper.ts";
+import { DOMContext, isDOMElement } from "../core/dom.js";
+import { HSContext, HyperStatic } from "../core/defs.js";
+import { makeHyper } from "../core/hyper.js";
 
 describe("h", () => {
   let h: HyperStatic<Node, Element>;

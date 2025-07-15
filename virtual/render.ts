@@ -2,9 +2,9 @@
  * Render a virtual DOM to a real DOM.
  */
 
-import { isVDElement, VDNode } from "./vdom.ts";
-import { DOMDocument, DOMElement, DOMNode, isDOMNode } from "../core/dom.ts";
-import { fail } from "@std/assert/fail";
+import { fail } from "../assert.js";
+import { DOMDocument, DOMElement, DOMNode, isDOMNode } from "../core/dom.js";
+import { isVDElement, VDNode } from "./vdom.js";
 
 /**
  * Render a VDOM node to a DOM node in a particular document.

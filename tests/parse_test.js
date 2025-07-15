@@ -1,6 +1,6 @@
 import { assertEquals, assertFalse, assertStrictEquals } from "@std/assert";
 import { describe, it } from "@std/testing/bdd";
-import { parse } from "../core/spec.ts";
+import { parse } from "../core/spec.js";
 
 describe("spec parser", () => {
   it("should parse a name", () => {

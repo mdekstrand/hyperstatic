@@ -1,6 +1,7 @@
-import { HSContext, HSNode, HyperStatic } from "./defs.ts";
-import { HyperFactory, HyperOptions } from "./factory.ts";
-import { parse } from "./spec.ts";
+import { HSContext, HSNode, HyperStatic } from "./defs.js";
+import { HyperFactory, HyperOptions } from "./factory.js";
+import { parse } from "./spec.js";
+
 export type { HyperStatic };
 
 export function makeHyper<N, E extends N>(

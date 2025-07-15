@@ -7,8 +7,8 @@
  * hyperscript implementations to be generic over DOM implementations, but also type-safe
  * (a single instantiation limited to a single implementation).
  */
-import { assert } from "@std/assert/assert";
-import { HSContext, HSNode } from "./defs.ts";
+import assert from "../assert.js";
+import { HSContext, HSNode } from "./defs.js";
 
 /**
  * Generic type for DOM documents.
@@ -32,8 +32,7 @@ export interface DOMNode<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>
 /**
  * Generic type for DOM elements.
  */
-export interface DOMElement<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>>
-  extends DOMNode<N, E> {
+export interface DOMElement<N extends DOMNode<N, E>, E extends N & DOMElement<N, E>> extends DOMNode<N, E> {
   id?: string;
   setAttribute(name: string, value: string): void;
   getAttribute(name: string): string | null;

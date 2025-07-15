@@ -3,7 +3,7 @@ import { assertEquals } from "@std/assert";
 import { beforeEach, describe, it } from "@std/testing/bdd";
 import { Document, DOMImplementation, Element, Node } from "@xmldom/xmldom";
 
-import { HyperStatic, hyperstatic } from "../mod.ts";
+import { HyperStatic, hyperstatic } from "../mod.js";
 
 describe("xml basic dom", () => {
   let impl: DOMImplementation, document: Document, x: HyperStatic<Node, Element>;

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "nodenext",
+    "target": "es2024",
+    "strict": false,
+    "declaration": true,
+    "lib": [
+      "ESNext",
+    ]
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}

@@ -2,7 +2,7 @@ import { assertArrayIncludes, assertEquals, assertFalse } from "@std/assert";
 import { beforeEach, describe, it } from "@std/testing/bdd";
 import { Document, Node } from "@b-fuze/deno-dom";
 
-import { hyperstatic } from "../mod.ts";
+import { hyperstatic } from "../mod.js";
 
 describe("createElement", () => {
   let h;

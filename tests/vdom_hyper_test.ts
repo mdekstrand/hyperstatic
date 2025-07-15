@@ -2,10 +2,10 @@ import { assert, assertEquals } from "@std/assert";
 import { beforeEach, describe, it } from "@std/testing/bdd";
 import { Document, Element, Node } from "@b-fuze/deno-dom";
 
-import { HyperStatic } from "../core/defs.ts";
-import { makeHyper } from "../core/hyper.ts";
-import { VDElement, VDNode, VirtualContext } from "../virtual/mod.ts";
-import { renderDOM } from "../virtual/mod.ts";
+import { HyperStatic } from "../core/defs.js";
+import { makeHyper } from "../core/hyper.js";
+import { VDElement, VDNode, VirtualContext } from "../virtual/mod.js";
+import { renderDOM } from "../virtual/mod.js";
 
 describe("h", () => {
   let h: HyperStatic<VDNode, VDElement>;

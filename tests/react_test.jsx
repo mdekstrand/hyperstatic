@@ -1,4 +1,4 @@
-import { React } from "./dft-react.ts";
+import { React } from "./dft-react.js";
 import { assertEquals, assertInstanceOf } from "@std/assert";
 import { beforeEach, describe, it } from "@std/testing/bdd";
 import { Document, DocumentFragment, Element, Node } from "@b-fuze/deno-dom";
