@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import { HSContext, HyperStatic } from "../core/defs.js";
 import { DOMContext, isDOMElement } from "../core/dom.js";
 import { makeHyper } from "../core/hyper.js";
-import { makeHyperJS } from "../jdsom/mod.js";
+import { makeHyperJS } from "../jsdom/mod.js";
 
 describe("h", () => {
   let js: JSDOM;
