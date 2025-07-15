@@ -1,6 +1,6 @@
 {
   "name": "@mdekstrand/hyperstatic",
-  "version": "0.7.1-alpha.0",
+  "version": "0.7.1-beta.0",
   "description": "Static JSX/HyperScript implementation on top of the DOM",
   "homepage": "https://github.com/mdekstrand/hyperstatic#readme",
   "bugs": {
