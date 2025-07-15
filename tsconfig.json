@@ -11,5 +11,9 @@
   },
   "include": [
     "**/*.ts"
+  ],
+  "exclude": [
+    "jsdom/*.ts",
+    "dist/**"
   ]
 }

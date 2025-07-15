@@ -17,8 +17,8 @@
   "exports": {
     ".": "./dist/mod.js",
     "./virtual": "./dist/virtual/mod.js",
-    "./deno-dom": "./dist/deno-dom/mod.js",
-    "./deno-dom/jsx-runtime": "./dist/deno-dom/jsx-runtime.js",
+    "./jsdom": "./dist/jsdom/mod.js",
+    "./jsdom/jsx-runtime": "./dist/jsdom/jsx-runtime.js",
     "./browser": "./dist/browser/mod.js",
     "./browser/jsx-runtime": "./dist/browser/jsx-runtime.js"
   },
@@ -29,6 +29,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "@types/jsdom": "^21.1.7",
     "dprint": "^0.50.1",
     "typescript": "^5.8.3"
   },
