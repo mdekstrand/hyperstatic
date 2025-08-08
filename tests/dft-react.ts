@@ -1,6 +1,8 @@
-import { Document } from "@b-fuze/deno-dom";
+import { JSDOM } from "jsdom";
 import { hyperstatic } from "../mod.js";
 
-export const React = hyperstatic(new Document());
+const dom = new JSDOM();
+
+export const React = hyperstatic(new dom.window.Document());
 
 export default React;

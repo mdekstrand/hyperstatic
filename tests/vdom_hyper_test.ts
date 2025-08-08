@@ -1,11 +1,15 @@
-import { assert, assertEquals } from "@std/assert";
-import { beforeEach, describe, it } from "@std/testing/bdd";
-import { Document, Element, Node } from "@b-fuze/deno-dom";
+import assert from "node:assert";
+
+import { JSDOM } from "jsdom";
+import { beforeEach, describe, it } from "mocha";
 
 import { HyperStatic } from "../core/defs.js";
 import { makeHyper } from "../core/hyper.js";
 import { VDElement, VDNode, VirtualContext } from "../virtual/mod.js";
 import { renderDOM } from "../virtual/mod.js";
+
+const dom = new JSDOM();
+const Node = dom.window.Node;
 
 describe("h", () => {
   let h: HyperStatic<VDNode, VDElement>;
@@ -13,49 +17,49 @@ describe("h", () => {
   beforeEach(() => {
     let ctx = new VirtualContext();
     h = makeHyper(ctx);
-    doc = new Document();
+    doc = new dom.window.Document();
   });
 
   it("creates an empty element", () => {
     let elt: any = renderDOM(h("div"), doc);
-    assertEquals(elt.nodeType, Node.ELEMENT_NODE);
-    assertEquals(elt.nodeName, "DIV");
-    assertEquals(elt.childNodes.length, 0);
+    assert.equal(elt.nodeType, Node.ELEMENT_NODE);
+    assert.equal(elt.nodeName, "div");
+    assert.equal(elt.childNodes.length, 0);
   });
 
   it("ignores null", () => {
     let elt: any = renderDOM(h("div", {}, null), doc);
-    assertEquals(elt.nodeType, Node.ELEMENT_NODE);
-    assertEquals(elt.nodeName, "DIV");
-    assertEquals(elt.childNodes.length, 0);
+    assert.equal(elt.nodeType, Node.ELEMENT_NODE);
+    assert.equal(elt.nodeName, "div");
+    assert.equal(elt.childNodes.length, 0);
   });
 
   it("creates an element with attributes", () => {
     let elt: any = renderDOM(h("a", { id: "link", href: "https://example.com" }), doc);
-    assertEquals(elt.nodeType, Node.ELEMENT_NODE);
-    assertEquals(elt.nodeName, "A");
-    assertEquals(elt.childNodes.length, 0);
-    assertEquals(elt.id, "link");
-    assertEquals(elt.getAttribute("href"), "https://example.com");
+    assert.equal(elt.nodeType, Node.ELEMENT_NODE);
+    assert.equal(elt.nodeName, "a");
+    assert.equal(elt.childNodes.length, 0);
+    assert.equal(elt.id, "link");
+    assert.equal(elt.getAttribute("href"), "https://example.com");
   });
 
   it("creates an element with an ID and link", () => {
     let elt: any = renderDOM(h("a#link", { href: "https://example.com" }), doc);
-    assertEquals(elt.nodeType, Node.ELEMENT_NODE);
-    assertEquals(elt.nodeName, "A");
-    assertEquals(elt.childNodes.length, 0);
-    assertEquals(elt.id, "link");
-    assertEquals(elt.getAttribute("href"), "https://example.com");
+    assert.equal(elt.nodeType, Node.ELEMENT_NODE);
+    assert.equal(elt.nodeName, "a");
+    assert.equal(elt.childNodes.length, 0);
+    assert.equal(elt.id, "link");
+    assert.equal(elt.getAttribute("href"), "https://example.com");
   });
 
   it("creates an element with a text child", () => {
     let elt: any = renderDOM(h("span", "fish"), doc);
-    assertEquals(elt.nodeType, Node.ELEMENT_NODE);
-    assertEquals(elt.nodeName, "SPAN");
+    assert.equal(elt.nodeType, Node.ELEMENT_NODE);
+    assert.equal(elt.nodeName, "span");
     // the text is right
-    assertEquals(elt.textContent, "fish");
+    assert.equal(elt.textContent, "fish");
     // there aren't any child elements
-    assertEquals(elt.childElementCount, 0);
+    assert.equal(elt.childElementCount, 0);
   });
 
   it("creates nested with classes", () => {
@@ -68,9 +72,9 @@ describe("h", () => {
       ]),
       doc,
     );
-    assertEquals(elt.nodeName, "NAV");
-    assertEquals(elt.classList[0], "top");
-    assertEquals(elt.children[0].nodeName, "UL");
-    assertEquals(elt.children[0].childElementCount, 2);
+    assert.equal(elt.nodeName, "nav");
+    assert.equal(elt.classList[0], "top");
+    assert.equal(elt.children[0].nodeName, "ul");
+    assert.equal(elt.children[0].childElementCount, 2);
   });
 });
