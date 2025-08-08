@@ -19,7 +19,7 @@ To use this in the browser, you need to use a transpiler that understands JSR im
 and write:
 
 ```javascript
-import { h } from 'jsr:@mdekstrand/hyperstatic';
+import { h } from '@mdekstrand/hyperstatic';
 
 let elt = h('a.link', {href: 'https://example.com'}, 'Example');
 ```
@@ -36,38 +36,28 @@ options to transpile JSX to Hyperstatic-based DOM manipulations for the browser:
 
 [esb-deno]: https://jsr/@luca/esbuild-deno-loader
 
-## Deno and deno_dom
+## Node and JSDOM
 
-To use in Deno:
+To use in Node with JSDom:
 
 ```javascript
-import { Document } from 'jsr:@b-fuze/deno-dom';
-import { hyperstatic } from 'jsr:@mdekstrand/hyperstatic';
-const h = hyperstatic({
-    document: new Document()
-});
+import { h } from 'jsr:@mdekstrand/hyperstatic/jsdom';
 
 let elt = h('a.link', {href: 'https://example.com'}, 'Example');
 ```
 
-The `deno-dom` submodule provides a Hyperstatic instance configured to use
-[deno_dom][].
-
 ## Use with JSX
 
-A Hyperstatic instandce also exposes a React-compatible `createElement`
+A Hyperstatic instance also exposes a React-compatible `createElement`
 function, `Fragment` constant, and modern JSX runtime `jsx` and `jsxs`
 functions to enable use with JSX.  You enable this with the following
-in `deno.json`:
+in `tsconfig.json`:
 
 ```json
 {
-    "imports": {
-        "@mdekstrand/hyperstatic": "@mdekstrand/hyperstatic@^0.6"
-    },
     "compilerOptions": {
         "jsx": "react-jsx",
-        "jsxImportSource": "@mdekstrand/hyperstatic/deno-dom"
+        "jsxImportSource": "@mdekstrand/hyperstatic/jsdom"
     }
 }
 ```
