@@ -1,6 +1,9 @@
 name: Publish
 
-on: create
+on:
+  push:
+    tags:
+      - v*
 
 jobs:
   publish:
@@ -12,7 +15,18 @@ jobs:
       id-token: write # The OIDC ID token is used for authentication with JSR.
     steps:
       - uses: actions/checkout@v4
-      - uses: denoland/setup-deno@v2
+      - uses: actions/setup-node@v4
         with:
-          deno-version: v2.x
-      - run: deno publish
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+      - name: Update NPM
+        run: npm i -g npm@latest
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Compile code
+        run: npm run build
+
+      - name: Publish to NPM
+        run: npm publish
