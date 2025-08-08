@@ -1,7 +1,13 @@
+/**
+ * This is the main entry point for HyperStatic, exported as the default
+ * import for the `@mdekstrand/hyperstatic` package.
+ *
+ * @module
+ */
 import { HSAttrs, HSContext, HSNode, HyperStatic } from "./core/defs.js";
+import { DOMContext, DOMDocument, DOMElement, DOMNode } from "./core/dom.js";
 import { HyperFactory, HyperOptions } from "./core/factory.js";
 import { makeHyper } from "./core/hyper.js";
-import { DOMContext, DOMDocument, DOMElement, DOMNode } from "./core/dom.js";
 
 export type { HSAttrs, HSContext, HSNode, HyperOptions, HyperStatic };
 export { DOMContext, HyperFactory };
