@@ -1,6 +1,8 @@
 /// <reference lib="dom" />
-import { assertEquals } from "@std/assert";
-import { beforeEach, describe, it } from "@std/testing/bdd";
+import assert from "node:assert";
+
+import { beforeEach, describe, it } from "mocha";
+
 import { Document, DOMImplementation, Element, Node } from "@xmldom/xmldom";
 
 import { HyperStatic, hyperstatic } from "../mod.js";
@@ -15,8 +17,8 @@ describe("xml basic dom", () => {
 
   it("creates an empty element", () => {
     let elt = x("sitemap");
-    assertEquals(elt.nodeName, "sitemap");
-    assertEquals(elt.tagName, "sitemap");
+    assert.equal(elt.nodeName, "sitemap");
+    assert.equal(elt.tagName, "sitemap");
   });
 });
 
@@ -30,8 +32,8 @@ describe("xml namespaced dom", () => {
 
   it("creates an empty element", () => {
     let elt = x("element");
-    assertEquals(elt.nodeName, "element");
-    assertEquals(elt.tagName, "element");
+    assert.equal(elt.nodeName, "element");
+    assert.equal(elt.tagName, "element");
   });
 });
 
@@ -45,8 +47,8 @@ describe("unnormalized attributes", () => {
 
   it("creates an empty element", () => {
     let elt = x("svg", { viewBox: "0 0 10 10" });
-    assertEquals(elt.nodeName, "svg");
-    assertEquals(elt.tagName, "svg");
-    assertEquals(elt.getAttribute("viewBox"), "0 0 10 10");
+    assert.equal(elt.nodeName, "svg");
+    assert.equal(elt.tagName, "svg");
+    assert.equal(elt.getAttribute("viewBox"), "0 0 10 10");
   });
 });
