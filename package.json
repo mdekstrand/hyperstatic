@@ -30,16 +30,17 @@
     "test": "mocha dist/tests"
   },
   "devDependencies": {
-    "@types/jsdom": "^21.1.7",
+    "@types/jsdom": "^27.0.0",
     "@types/mocha": "^10.0.10",
     "@xmldom/xmldom": "^0.9.8",
     "dprint": "^0.50.1",
     "mocha": "^11.7.1",
+    "jsdom": "^27.0.0",
     "typedoc": "^0.28.9",
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "jsdom": "^26.1.0"
+    "jsdom": "^27.0.0"
   },
   "peerDependenciesMeta": {
     "jsdom": {
