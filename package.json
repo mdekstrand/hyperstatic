@@ -12,6 +12,9 @@
   },
   "license": "MIT",
   "author": "Michael Ekstrand <md@ekstrandom.net>",
+  "engines": {
+    "node": ">=24"
+  },
   "type": "module",
   "module": "dist/mod.js",
   "exports": {
